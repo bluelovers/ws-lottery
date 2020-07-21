@@ -7,14 +7,16 @@ import __root from '../../../__root';
 import { getHistoryPath } from '../../../util/getHistoryPath';
 import { IResultSuperlotto638, IRecordRow, IResultDailyCash } from '@lazy-lotto/types';
 
-export function doTask(pb?: PlaywrightBrowser)
+export function doTask(pb: PlaywrightBrowser)
 {
-	pb ??= new PlaywrightBrowser();
+	//pb ??= new PlaywrightBrowser();
 
 	return Bluebird.resolve(pb)
 		.then(async (pb) =>
 		{
 			let targetFile = getHistoryPath('DailyCash.json');
+
+			let data: Record<string, IRecordRow<IResultDailyCash>> = await readJSON(targetFile).catch(e => ({}));
 
 			return Bluebird.resolve(pb)
 				.tap(async (pb) =>
@@ -25,8 +27,6 @@ export function doTask(pb?: PlaywrightBrowser)
 //	await page.goto('https://www.taiwanlottery.com.tw/lotto/superlotto638/history2.aspx');
 
 					let trs = await page.$$('table[width="780"] tr[onmouseover]');
-
-					let data: Record<string, IRecordRow<IResultDailyCash>> = await readJSON(targetFile).catch(e => ({}));
 
 					await Bluebird.each(trs, async (tr) =>
 					{
@@ -52,19 +52,25 @@ export function doTask(pb?: PlaywrightBrowser)
 						return data;
 					});
 
-					console.dir(data, {
-						depth: null,
-					});
+					await page.close();
+
+//					console.dir(data, {
+//						depth: null,
+//					});
+
+				})
+				.finally(async () =>
+				{
 
 					await outputJSON(targetFile, data, {
 						spaces: 2,
 					})
 
+					//return pb.close()
 				})
-				.finally(() => pb.close())
 
 		})
 		;
 }
 
-export default doTask()
+export default doTask

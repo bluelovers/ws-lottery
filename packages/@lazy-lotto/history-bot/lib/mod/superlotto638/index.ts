@@ -8,9 +8,9 @@ import { getHistoryPath } from '../../../util/getHistoryPath';
 import { IResultSuperlotto638, IRecordRow } from '@lazy-lotto/types';
 import fill from 'fill-range';
 
-export function doTask(pb?: PlaywrightBrowser)
+export function doTask(pb: PlaywrightBrowser)
 {
-	pb ??= new PlaywrightBrowser();
+	//pb ??= new PlaywrightBrowser();
 
 	return Bluebird.resolve(pb)
 		.then(async (pb) =>
@@ -54,17 +54,22 @@ export function doTask(pb?: PlaywrightBrowser)
 						return data;
 					});
 
+					await page.close();
 
 					await Bluebird.each([
+						`http://lotto.arclink.com.tw/Lottonocheck.do?type=12`,
+					].concat([
 						fill(1, 6),
 						fill(7, 12),
 						fill(13, 18),
 						fill(19, 24),
 						fill(25, 30),
 						fill(31, 36),
-					], async (ls, index) => {
-
-						let href = `http://lotto.arclink.com.tw/Lottonocheck.do?type=12&limit=50&num1=${ls[0]}&num2=${ls[1]}&num3=${ls[2]}&num4=${ls[3]}&num5=${ls[4]}&num6=${ls[5]}&num7=${index+1}&Submit=%B9%EF%A4%F1%ACd%B8%DF`;
+						[4, 15, 22, 37, 38, 39, 1],
+					].map((ls,
+						index,
+					) => `http://lotto.arclink.com.tw/Lottonocheck.do?type=12&limit=50&num1=${ls[0]}&num2=${ls[1]}&num3=${ls[2]}&num4=${ls[3]}&num5=${ls[4]}&num6=${ls[5]}&num7=${index + 1}&Submit=%B9%EF%A4%F1%ACd%B8%DF`)), async (href) =>
+					{
 
 						//console.dir(href)
 
@@ -100,25 +105,28 @@ export function doTask(pb?: PlaywrightBrowser)
 							return data;
 						});
 
+						await page.close();
+
 						return Bluebird.delay(1000)
 					})
 
-					console.dir(data, {
-						depth: null,
-					});
+//					console.dir(data, {
+//						depth: null,
+//					});
 
 				})
-				.finally(async () => {
+				.finally(async () =>
+				{
 
 					await outputJSON(targetFile, data, {
 						spaces: 2,
 					})
 
-					return pb.close()
+					//return pb.close()
 				})
 
 		})
 		;
 }
 
-export default doTask()
+export default doTask

@@ -4,13 +4,12 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.doTask = void 0;
-const playwright_class_1 = __importDefault(require("playwright-class"));
 const bluebird_1 = __importDefault(require("bluebird"));
 const fs_extra_1 = require("fs-extra");
 const getHistoryPath_1 = require("../../../util/getHistoryPath");
 const fill_range_1 = __importDefault(require("fill-range"));
 function doTask(pb) {
-    pb !== null && pb !== void 0 ? pb : (pb = new playwright_class_1.default());
+    //pb ??= new PlaywrightBrowser();
     return bluebird_1.default.resolve(pb)
         .then(async (pb) => {
         let targetFile = getHistoryPath_1.getHistoryPath('superlotto638.json');
@@ -38,15 +37,18 @@ function doTask(pb) {
                 };
                 return data;
             });
+            await page.close();
             await bluebird_1.default.each([
+                `http://lotto.arclink.com.tw/Lottonocheck.do?type=12`,
+            ].concat([
                 fill_range_1.default(1, 6),
                 fill_range_1.default(7, 12),
                 fill_range_1.default(13, 18),
                 fill_range_1.default(19, 24),
                 fill_range_1.default(25, 30),
                 fill_range_1.default(31, 36),
-            ], async (ls, index) => {
-                let href = `http://lotto.arclink.com.tw/Lottonocheck.do?type=12&limit=50&num1=${ls[0]}&num2=${ls[1]}&num3=${ls[2]}&num4=${ls[3]}&num5=${ls[4]}&num6=${ls[5]}&num7=${index + 1}&Submit=%B9%EF%A4%F1%ACd%B8%DF`;
+                [4, 15, 22, 37, 38, 39, 1],
+            ].map((ls, index) => `http://lotto.arclink.com.tw/Lottonocheck.do?type=12&limit=50&num1=${ls[0]}&num2=${ls[1]}&num3=${ls[2]}&num4=${ls[3]}&num5=${ls[4]}&num6=${ls[5]}&num7=${index + 1}&Submit=%B9%EF%A4%F1%ACd%B8%DF`)), async (href) => {
                 //console.dir(href)
                 const page = await pb.newPage();
                 await page.goto(href);
@@ -69,20 +71,21 @@ function doTask(pb) {
                     };
                     return data;
                 });
+                await page.close();
                 return bluebird_1.default.delay(1000);
             });
-            console.dir(data, {
-                depth: null,
-            });
+            //					console.dir(data, {
+            //						depth: null,
+            //					});
         })
             .finally(async () => {
             await fs_extra_1.outputJSON(targetFile, data, {
                 spaces: 2,
             });
-            return pb.close();
+            //return pb.close()
         });
     });
 }
 exports.doTask = doTask;
-exports.default = doTask();
+exports.default = doTask;
 //# sourceMappingURL=index.js.map
