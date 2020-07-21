@@ -29,7 +29,7 @@ const bluebird_1 = __importDefault(require("bluebird"));
 const path_1 = require("path");
 const playwright_class_1 = __importDefault(require("playwright-class"));
 exports.default = bluebird_1.default.resolve(new playwright_class_1.default())
-    .then(pb => {
+    .tap(pb => {
     return bluebird_1.default.each([
         './lib/mod/dailycash',
         './lib/mod/lotto649',
@@ -41,5 +41,6 @@ exports.default = bluebird_1.default.resolve(new playwright_class_1.default())
         console.timeEnd(target);
     });
 })
+    .tap(pb => pb.close())
     .tap(e => process.exit());
 //# sourceMappingURL=index.js.map

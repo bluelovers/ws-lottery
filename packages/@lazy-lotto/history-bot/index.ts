@@ -7,7 +7,7 @@ import { join } from 'path';
 import PlaywrightBrowser from 'playwright-class';
 
 export default Bluebird.resolve(new PlaywrightBrowser())
-	.then(pb => {
+	.tap(pb => {
 		return Bluebird.each([
 			'./lib/mod/dailycash',
 			'./lib/mod/lotto649',
@@ -22,6 +22,7 @@ export default Bluebird.resolve(new PlaywrightBrowser())
 			console.timeEnd(target)
 		})
 	})
+	.tap(pb => pb.close())
 	.tap(e => process.exit())
 ;
 
