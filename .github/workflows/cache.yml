@@ -1,4 +1,4 @@
-name: build segment cache
+name: build lotto cache
 
 on:
   push:
