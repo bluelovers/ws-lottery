@@ -10,7 +10,10 @@
     "威力彩",
     "今彩539",
     "雙贏彩",
-    "獎號"
+    "獎號",
+    "dailycash",
+    "lotto649",
+    "superlotto638"
   ],
   "workspaces": [
     "packages/@lazy-lotto/*",

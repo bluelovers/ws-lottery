@@ -6,6 +6,7 @@ import { join } from 'path';
 import __root from '../../../__root';
 import { getHistoryPath } from '../../../util/getHistoryPath';
 import { IResultSuperlotto638, IRecordRow } from '@lazy-lotto/types';
+import fill from 'fill-range';
 
 export function doTask(pb?: PlaywrightBrowser)
 {
@@ -16,6 +17,8 @@ export function doTask(pb?: PlaywrightBrowser)
 		{
 			let targetFile = getHistoryPath('superlotto638.json');
 
+			let data: Record<string, IRecordRow<IResultSuperlotto638>> = await readJSON(targetFile).catch(e => ({}));
+
 			return Bluebird.resolve(pb)
 				.tap(async (pb) =>
 				{
@@ -25,8 +28,6 @@ export function doTask(pb?: PlaywrightBrowser)
 //	await page.goto('https://www.taiwanlottery.com.tw/lotto/superlotto638/history2.aspx');
 
 					let trs = await page.$$('table[width="780"] tr[onmouseover]');
-
-					let data: Record<string, IRecordRow<IResultSuperlotto638>> = await readJSON(targetFile).catch(e => ({}));
 
 					await Bluebird.each(trs, async (tr) =>
 					{
@@ -53,16 +54,68 @@ export function doTask(pb?: PlaywrightBrowser)
 						return data;
 					});
 
+
+					await Bluebird.each([
+						fill(1, 6),
+						fill(7, 12),
+						fill(13, 18),
+						fill(19, 24),
+						fill(25, 30),
+						fill(31, 36),
+					], async (ls, index) => {
+
+						let href = `http://lotto.arclink.com.tw/Lottonocheck.do?type=12&limit=50&num1=${ls[0]}&num2=${ls[1]}&num3=${ls[2]}&num4=${ls[3]}&num5=${ls[4]}&num6=${ls[5]}&num7=${index+1}&Submit=%B9%EF%A4%F1%ACd%B8%DF`;
+
+						//console.dir(href)
+
+						const page = await pb.newPage();
+						await page.goto(href);
+
+						let trs = await page.$$('tr[onmouseover][onmouseout]');
+
+						await Bluebird.each(trs, async (tr) =>
+						{
+
+							let tds = await tr.$$('td');
+
+							let id = await tds[0].innerText();
+							let date = await tds[1].innerText();
+
+							let ls = await Bluebird.map(tds.slice(2), async (td) =>
+							{
+								return Number(await td.innerText())
+							});
+
+							ls.pop();
+
+							data[id] = {
+								id,
+								date,
+								result: [
+									ls.slice(0, 6),
+									ls.pop(),
+								],
+							}
+
+							return data;
+						});
+
+						return Bluebird.delay(1000)
+					})
+
 					console.dir(data, {
 						depth: null,
 					});
+
+				})
+				.finally(async () => {
 
 					await outputJSON(targetFile, data, {
 						spaces: 2,
 					})
 
+					return pb.close()
 				})
-				.finally(() => pb.close())
 
 		})
 		;

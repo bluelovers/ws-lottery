@@ -2,7 +2,6 @@
   "name": "@lazy-lotto/tw-history-data",
   "version": "1.0.0",
   "description": "",
-  "private": true,
   "keywords": [
     "lotto",
     "lottery",
@@ -11,13 +10,33 @@
     "威力彩",
     "今彩539",
     "雙贏彩",
-    "獎號"
+    "獎號",
+    "dailycash",
+    "lotto649",
+    "superlotto638"
   ],
+  "homepage": "https://github.com/bluelovers/ws-lottery/tree/master/packages/@lazy-lotto/tw-history-data#readme",
+  "bugs": {
+    "url": "https://github.com/bluelovers/ws-lottery/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bluelovers/ws-lottery.git"
+  },
   "license": "ISC",
   "author": "bluelovers",
   "main": "index.js",
+  "directories": {
+    "lib": "lib"
+  },
   "scripts": {
-    "preversion": "git commit -m \"build: update cache\" ./lib & echo preversion"
+    "test": "echo \"Error: no test specified\"",
+    "preversion": "git commit -m \"build: update cache\" ./lib & echo preversion",
+    "prepublishOnly_": "yarn run test",
+    "prepublishOnly:check-bin": "ynpx --quiet @yarn-tool/check-pkg-bin",
+    "prepublishOnly:update": "yarn run ncu && yarn run sort-package-json",
+    "ncu": "yarn-tool ncu -u",
+    "sort-package-json": "yarn-tool sort"
   },
   "dependencies": {},
   "devDependencies": {},
