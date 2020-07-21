@@ -18,6 +18,8 @@
   ],
   "scripts": {
     "test": "yarn-tool ws run test",
+    "ci:install": "yarn --frozen-lockfile",
+    "ci:build": "yarn workspace @lazy-lotto/history-bot run build",
     "lerna:publish": "yarn run prepublishOnly && lerna publish && yarn run postpublishOnly",
     "lerna:publish:yes": "yarn run prepublishOnly && lerna publish --yes --bump patch && yarn run postpublishOnly",
     "preversion": "echo preversion",
