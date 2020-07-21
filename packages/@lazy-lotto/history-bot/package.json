@@ -1,0 +1,41 @@
+{
+  "name": "@lazy-lotto/history-bot",
+  "version": "1.0.0",
+  "description": "",
+  "private": true,
+  "keywords": [
+    "lotto",
+    "lottery",
+    "樂透",
+    "威力彩",
+    "獎號"
+  ],
+  "license": "ISC",
+  "author": "bluelovers",
+  "main": "index.js",
+  "scripts": {
+    "lint": "ynpx --quiet eslint -- **/*.ts",
+    "test": "echo \"Error: no test specified\"",
+    "test:jest": "ynpx --quiet jest -- --coverage",
+    "test:mocha": "ynpx --quiet -p ts-node -p mocha mocha -- --require ts-node/register \"!(node_modules)/**/*.{test,spec}.{ts,tsx}\"",
+    "build": "ts-node index.ts",
+    "postbuild": "yarn workspace @lazy-lotto/tw-history-data run preversion",
+    "preversion": "yarn run prepublishOnly",
+    "prepublishOnly": "yarn run build",
+    "prepublishOnly:check-bin": "ynpx --quiet @yarn-tool/check-pkg-bin",
+    "prepublishOnly:update": "yarn run ncu && yarn run sort-package-json",
+    "ncu": "yarn-tool ncu -u",
+    "sort-package-json": "yarn-tool sort"
+  },
+  "dependencies": {
+    "bluebird": "^3.7.2",
+    "fs-extra": "^9.0.1",
+    "playwright": "^1.2.1",
+    "playwright-class": "^1.0.1"
+  },
+  "devDependencies": {},
+  "peerDependencies": {},
+  "publishConfig": {
+    "access": "public"
+  }
+}

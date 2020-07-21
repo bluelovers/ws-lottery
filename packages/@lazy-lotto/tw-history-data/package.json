@@ -1,0 +1,28 @@
+{
+  "name": "@lazy-lotto/tw-history-data",
+  "version": "1.0.0",
+  "description": "",
+  "private": true,
+  "keywords": [
+    "lotto",
+    "lottery",
+    "樂透",
+    "大樂透",
+    "威力彩",
+    "今彩539",
+    "雙贏彩",
+    "獎號"
+  ],
+  "license": "ISC",
+  "author": "bluelovers",
+  "main": "index.js",
+  "scripts": {
+    "preversion": "git commit -m \"build: update cache\" ./lib & echo preversion"
+  },
+  "dependencies": {},
+  "devDependencies": {},
+  "peerDependencies": {},
+  "publishConfig": {
+    "access": "public"
+  }
+}

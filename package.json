@@ -1,0 +1,49 @@
+{
+  "name": "ws-lottery",
+  "version": "1.0.0",
+  "private": true,
+  "keywords": [
+    "lotto",
+    "lottery",
+    "樂透",
+    "大樂透",
+    "威力彩",
+    "今彩539",
+    "雙贏彩",
+    "獎號"
+  ],
+  "workspaces": [
+    "packages/@lazy-lotto/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "test": "yarn-tool ws run test",
+    "lerna:publish": "yarn run prepublishOnly && lerna publish && yarn run postpublishOnly",
+    "lerna:publish:yes": "yarn run prepublishOnly && lerna publish --yes --bump patch && yarn run postpublishOnly",
+    "preversion": "echo preversion",
+    "prepare:fix-ws-links": "ynpx --quiet @yarn-tool/fix-ws-links",
+    "prepublishOnly": "yarn run prepublishOnly:check-bin && yarn run prepare:fix-ws-links",
+    "prepublishOnly:check-bin": "ynpx --quiet @yarn-tool/check-pkg-bin",
+    "prepublishOnly:lockfile": "ynpx --quiet sync-lockfile",
+    "postpublishOnly": "echo postpublishOnly",
+    "ncu": "yarn run ncu:root && yarn run ncu:ws",
+    "ncu:root": "yarn-tool ncu -- -u",
+    "ncu:ws": "yarn-tool ws exec yarn-tool ncu -- -u",
+    "sort-package-json": "yarn run sort-package-json:root && yarn run sort-package-json:ws",
+    "sort-package-json:root": "yarn-tool sort",
+    "sort-package-json:ws": "yarn-tool ws exec yarn-tool sort"
+  },
+  "resolutions": {},
+  "devDependencies": {
+    "@bluelovers/tsconfig": "^1.0.19",
+    "@types/bluebird": "^3.5.32",
+    "@types/fs-extra": "^9.0.1",
+    "@types/node": "*"
+  },
+  "peerDependencies": {
+    "@bluelovers/conventional-changelog-bluelovers": "*",
+    "lerna": "*",
+    "yarn": "*",
+    "ynpx": "*"
+  }
+}
