@@ -1,6 +1,6 @@
 {
   "name": "random-lotto",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "generator random lotto 樂透獎號生成器",
   "keywords": [
     "lotto",
@@ -42,7 +42,5 @@
     "@bluelovers/string-natural-compare": "^1.1.2",
     "fill-range": "^7.0.1",
     "random-extra": "^3.6.13"
-  },
-  "devDependencies": {},
-  "peerDependencies": {}
+  }
 }
