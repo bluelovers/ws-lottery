@@ -4,8 +4,8 @@ import Bluebird from 'bluebird';
 import { outputJSON, readJSON } from 'fs-extra';
 import { join } from 'path';
 import __root from '../../../__root';
-import { IRecordRow, IResultSuperlotto638 } from '../../types';
 import { getHistoryPath } from '../../../util/getHistoryPath';
+import { IResultSuperlotto638, IRecordRow, IResultDailyCash } from '@lazy-lotto/types';
 
 export function doTask(pb?: PlaywrightBrowser)
 {
@@ -26,9 +26,7 @@ export function doTask(pb?: PlaywrightBrowser)
 
 					let trs = await page.$$('table[width="780"] tr[onmouseover]');
 
-					let data: Record<string, IRecordRow<[
-						number[]
-					]>> = await readJSON(targetFile).catch(e => ({}));
+					let data: Record<string, IRecordRow<IResultDailyCash>> = await readJSON(targetFile).catch(e => ({}));
 
 					await Bluebird.each(trs, async (tr) =>
 					{

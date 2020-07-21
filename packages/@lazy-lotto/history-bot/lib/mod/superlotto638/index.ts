@@ -4,8 +4,8 @@ import Bluebird from 'bluebird';
 import { outputJSON, readJSON } from 'fs-extra';
 import { join } from 'path';
 import __root from '../../../__root';
-import { IRecordRow, IResultSuperlotto638 } from '../../types';
 import { getHistoryPath } from '../../../util/getHistoryPath';
+import { IResultSuperlotto638, IRecordRow } from '@lazy-lotto/types';
 
 export function doTask(pb?: PlaywrightBrowser)
 {
