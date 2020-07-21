@@ -53,6 +53,7 @@
     "ynpx": "*"
   },
   "dependencies": {
+    "debug-color2": "^1.2.3",
     "jest": "^26.1.0",
     "ts-jest": "^26.1.3"
   }

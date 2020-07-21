@@ -45,7 +45,7 @@ let g = randomLottoGenerator({
 
 let list = [];
 
-for (let i = 0; i < 100; i++)
+for (let i = 0; i < 50; i++)
 {
 	let actual = g.next().value;
 
@@ -69,6 +69,7 @@ list.sort((a, b) => {
 
 console.dir(list, {
 	depth: null,
+	colors: true,
 })
 
 function simpleMatchInArray<T extends number[]>(a1: T, a2: T)
@@ -76,7 +77,7 @@ function simpleMatchInArray<T extends number[]>(a1: T, a2: T)
 	return a2.filter(v => a1.includes(v))
 }
 
-function simpleMatchIn<T extends number[]>(a1: T,historyArray: IRecordRow<[
+function simpleMatchIn<T extends number[]>(current: T,historyArray: IRecordRow<[
 	T,
 	...any
 ]>[])
@@ -86,7 +87,7 @@ function simpleMatchIn<T extends number[]>(a1: T,historyArray: IRecordRow<[
 
 	let ls = historyArray.reduce((a, v) => {
 
-		let m = simpleMatchInArray(a1, v.result[0]);
+		let m = simpleMatchInArray(current, v.result[0]);
 
 		if (m.length > 3)
 		{
@@ -104,8 +105,9 @@ function simpleMatchIn<T extends number[]>(a1: T,historyArray: IRecordRow<[
 	if (bool === true)
 	{
 		return {
+			current,
 			max,
-			ls
+			//ls
 		}
 	}
 }

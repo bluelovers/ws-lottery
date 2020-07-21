@@ -8,10 +8,11 @@ const bluebird_1 = __importDefault(require("bluebird"));
 const fs_extra_1 = require("fs-extra");
 const getHistoryPath_1 = require("../../../util/getHistoryPath");
 const fill_range_1 = __importDefault(require("fill-range"));
+//doTask(new PlaywrightBrowser()).then(pb => pb.close())
 function doTask(pb) {
     //pb ??= new PlaywrightBrowser();
     return bluebird_1.default.resolve(pb)
-        .then(async (pb) => {
+        .tap(async (pb) => {
         let targetFile = getHistoryPath_1.getHistoryPath('superlotto638.json');
         let data = await fs_extra_1.readJSON(targetFile).catch(e => ({}));
         return bluebird_1.default.resolve(pb)
@@ -38,6 +39,28 @@ function doTask(pb) {
                 return data;
             });
             await page.close();
+            await pb.newPage()
+                .then(async (page) => {
+                await page.goto(`http://lotto.arclink.com.tw/jsp/lotto/historyKind120100.jsp?n1=&n2=&n3=`);
+                let trs = await page.$$('table tr[id^="p"]');
+                await bluebird_1.default.each(trs, async (tr) => {
+                    let tds = await tr.$$('td');
+                    let id = await tds[0].innerText();
+                    let ls = await bluebird_1.default.map(tds.slice(1), async (td) => {
+                        return Number(await td.innerText());
+                    });
+                    data[id] = {
+                        ...data[id],
+                        id,
+                        result: [
+                            ls.slice(0, 6),
+                            ls.pop(),
+                        ],
+                    };
+                    return data;
+                });
+                await page.close();
+            });
             await bluebird_1.default.each([
                 `http://lotto.arclink.com.tw/Lottonocheck.do?type=12`,
             ].concat([

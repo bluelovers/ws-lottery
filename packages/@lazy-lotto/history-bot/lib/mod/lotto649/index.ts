@@ -8,6 +8,8 @@ import { getHistoryPath } from '../../../util/getHistoryPath';
 import { IResultSuperlotto638, IRecordRow } from '@lazy-lotto/types';
 import fill from 'fill-range';
 
+//doTask(new PlaywrightBrowser()).then(pb => pb.close())
+
 export function doTask(pb: PlaywrightBrowser)
 {
 	//pb ??= new PlaywrightBrowser();
@@ -55,6 +57,42 @@ export function doTask(pb: PlaywrightBrowser)
 					});
 
 					await page.close();
+
+					await pb.newPage()
+						.then(async (page) => {
+
+							await page.goto(`http://lotto.arclink.com.tw/jsp/lotto/historyKind10100.jsp?n1=&n2=&n3=`);
+
+							let trs = await page.$$('table tr[id^="p"]');
+
+							await Bluebird.each(trs, async (tr) =>
+							{
+
+								let tds = await tr.$$('td');
+
+								let id = await tds[0].innerText();
+
+								let ls = await Bluebird.map(tds.slice(1), async (td) =>
+								{
+									return Number(await td.innerText())
+								});
+
+								data[id] = {
+									...data[id],
+									id,
+									result: [
+										ls.slice(0, 6),
+										ls.pop(),
+									],
+								}
+
+								return data;
+							});
+
+							await page.close();
+
+						})
+					;
 
 					await Bluebird.each([
 						`http://lotto.arclink.com.tw/Lottonocheck.do?type=1`,
