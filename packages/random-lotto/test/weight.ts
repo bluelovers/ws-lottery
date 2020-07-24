@@ -6,7 +6,7 @@ import naturalCompare from '@bluelovers/string-natural-compare';
 
 let historyArray = (Object.values(superlotto638) as IRecordRow<IResultSuperlotto638>[]);
 
-const weightTable = historyArray
+export const weightTable: IRandomLottoParams["weightTable"] = historyArray
 	.reduce((a, row) =>
 	{
 
@@ -27,6 +27,20 @@ const weightTable = historyArray
 	}, [{}, {}] as IRandomLottoParams["weightTable"]);
 
 console.dir(weightTable)
+
+Object.entries(weightTable[0])
+	.forEach((row) =>
+	{
+
+		if (row[1] < 100)
+		{
+			delete weightTable[0][row[0]]
+		}
+
+	})
+;
+
+console.dir(weightTable[0])
 
 let g = randomLottoGenerator({
 	ranges: [
@@ -63,9 +77,19 @@ for (let i = 0; i < 50; i++)
 	//console.log(actual)
 }
 
-list.sort((a, b) => {
-	return b.max - a.max
-})
+list = list.filter(a => {
+	let { skip } = a.follow;
+	delete a.follow.skip;
+	return !skip
+});
+
+//list = list.sort((a, b) => {
+//	return a.follow.count - b.follow.count
+//})
+
+//list.sort((a, b) => {
+//	return b.max - a.max
+//})
 
 console.dir(list, {
 	depth: null,
@@ -77,15 +101,16 @@ function simpleMatchInArray<T extends number[]>(a1: T, a2: T)
 	return a2.filter(v => a1.includes(v))
 }
 
-function simpleMatchIn<T extends number[]>(current: T,historyArray: IRecordRow<[
+function simpleMatchIn<T extends number[]>(current: T, historyArray: IRecordRow<[
 	T,
 	...any
 ]>[])
 {
 	let bool: boolean
-	let max: number = 0;
+	let match: number = 0;
 
-	let ls = historyArray.reduce((a, v) => {
+	let ls = historyArray.reduce((a, v, index) =>
+	{
 
 		let m = simpleMatchInArray(current, v.result[0]);
 
@@ -94,7 +119,16 @@ function simpleMatchIn<T extends number[]>(current: T,historyArray: IRecordRow<[
 			a[m.length] ??= [];
 			a[m.length].push(v.result[0])
 
-			max = Math.max(m.length, max)
+			match = Math.max(m.length, match)
+
+			bool = true;
+		}
+		else if (index < 20)
+		{
+			a[m.length] ??= [];
+			a[m.length].push(v.result[0])
+
+			match = Math.max(m.length, match)
 
 			bool = true;
 		}
@@ -106,8 +140,60 @@ function simpleMatchIn<T extends number[]>(current: T,historyArray: IRecordRow<[
 	{
 		return {
 			current,
-			max,
-			//ls
+			match,
+			//ls,
+			follow: followArea(current),
 		}
 	}
+}
+
+export function followArea<T extends number[]>(current: T)
+{
+	let count: number = 0;
+	let map: Record<string, number> = {};
+
+	current.forEach(value =>
+	{
+		[
+			[1, 7],
+			[8, 14],
+			[15, 21],
+			[15, 21],
+			[22, 28],
+			[29, 35],
+			[36, 39],
+		].some(([min, max], index) =>
+		{
+			if (value >= min && value <= max)
+			{
+				map[index] ??= 0;
+				map[index]++;
+				return true
+			}
+		})
+	});
+
+	let skip = false;
+
+	count = Object.values(map).filter(v =>
+	{
+
+		if (v > 3)
+		{
+			skip = true;
+		}
+
+		return v > 2
+	}).length;
+
+	if (count > 1 || Object.values(map).filter(v => v >= 2).length < 1)
+	{
+		skip = true;
+	}
+
+	return {
+		count,
+		skip,
+		map,
+	};
 }
