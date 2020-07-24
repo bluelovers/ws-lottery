@@ -1,6 +1,7 @@
 import random from 'random-extra';
 import { Random } from 'random-extra/src';
 import naturalCompare from '@bluelovers/string-natural-compare';
+import { IGetWeight } from 'random-extra/src/distributions/internal/item-by-weight';
 
 export interface IRandomLottoParams
 {
@@ -8,24 +9,48 @@ export interface IRandomLottoParams
 	ranges: Parameters<Random["dfItemByWeightUnique"]>[];
 	weightTable?: Record<string, number>[];
 	sortResults?: boolean,
+	getWeight?: IRandomLottoGetWeight<any>;
+
+	handleOptionsRangeArgv?<T extends any[] = number[][]>(argv: Parameters<Random["dfItemByWeightUnique"]>, index: number, options: IRandomLottoParams): Parameters<Random["dfItemByWeightUnique"]>
 }
 
-export function* randomLottoGenerator<T extends any[] = number[][]>(options: IRandomLottoParams): Generator<T, T, unknown>
+export interface IRandomLottoGetWeight<T extends unknown, K extends string = string> extends IGetWeight<T, K> {
+	(value: T, key: K, index: number, options: IRandomLottoParams, ...argv: any[]): number;
+}
+
+export function defaultGetWeight<T extends unknown, K extends string = string>(value: T, key: K, index: number, options: IRandomLottoParams, ...argv: any[]): number
 {
-	const rnd = options.random ?? random;
-	const weightTable = options.weightTable ?? [];
+	// @ts-ignore
+	return options.weightTable?.[index]?.[value] || 1;
+}
+
+export function handleOptionsRange<T extends any[] = number[][]>(argv: Parameters<Random["dfItemByWeightUnique"]>, index: number, options: IRandomLottoParams)
+{
+	let opts = argv[2] || {};
+
+	opts.getWeight ??= (value, key) => options.getWeight(value, key, index, options);
+
+	opts.shuffle ??= true;
+	opts.disableSort ??= true;
+
+	argv[2] = opts;
+
+	argv = options.handleOptionsRangeArgv?.(argv, index, options) ?? argv;
+
+	return argv
+}
+
+export function handleOptions<T extends any[] = number[][]>(options: IRandomLottoParams)
+{
+	const rnd = options.random ??= random;
+	const weightTable = options.weightTable ??= [];
+
+	options.getWeight ??= defaultGetWeight;
+	options.sortResults = !!options.sortResults;
 
 	const fns = options.ranges.map((argv,  index) =>
 	{
-
-		let options = argv[2] || {};
-
-		options.getWeight ??= (value: any) => weightTable[index]?.[value] || 1;
-
-		options.shuffle ??= true;
-		options.disableSort ??= true;
-
-		argv[2] = options;
+		argv = handleOptionsRange(argv, index, options);
 
 		if (argv[1] === 1)
 		{
@@ -35,9 +60,21 @@ export function* randomLottoGenerator<T extends any[] = number[][]>(options: IRa
 		return rnd.dfItemByWeightUnique(...argv)
 	})
 
+	return {
+		rnd,
+		weightTable,
+		fns,
+		options,
+	}
+}
+
+export function* randomLottoGenerator<T extends any[] = number[][]>(options: IRandomLottoParams): Generator<T, T, unknown>
+{
+	const { fns } = handleOptions(options);
+	const { sortResults } = options;
+
 	while (true)
 	{
-		// @ts-ignore
 		let result: T = fns.map(fn => {
 
 			let ret = fn();
@@ -47,10 +84,9 @@ export function* randomLottoGenerator<T extends any[] = number[][]>(options: IRa
 				return ret[1]
 			}
 
-			// @ts-ignore
-			let value: number[] = ret.map(v => v[1]);
+			let value: number[] = (ret as any[]).map(v => v[1]);
 
-			if (options.sortResults)
+			if (sortResults === true)
 			{
 				value = value.sort(naturalCompare);
 			}
