@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.2](https://github.com/bluelovers/ws-lottery/compare/@lazy-lotto/history-bot@1.0.1...@lazy-lotto/history-bot@1.0.2) (2020-07-24)
+
+
+### ✨　Features
+
+* add new source ([d5c6466](https://github.com/bluelovers/ws-lottery/commit/d5c6466b0bf2290d7b45e18d4b42d3aaa06d8de8))
+
+
+### 🔖　Miscellaneous
+
+* . ([c281870](https://github.com/bluelovers/ws-lottery/commit/c2818700b34b018fae613a1c29b75319cb2df934))
+* . ([2d7878c](https://github.com/bluelovers/ws-lottery/commit/2d7878c240fed889744aa4fcb6ea1d784ebfb97a))
+
+
+
+
+
 ## 1.0.1 (2020-07-21)
 
 
