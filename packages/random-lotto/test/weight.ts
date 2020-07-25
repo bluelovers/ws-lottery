@@ -67,7 +67,10 @@ for (let i = 0; i < 50; i++)
 
 	if (m !== void 0)
 	{
-		list.push(m);
+		list.push({
+			...m,
+			sp: actual[1],
+		});
 
 //		console.dir(m, {
 //			depth: null,
