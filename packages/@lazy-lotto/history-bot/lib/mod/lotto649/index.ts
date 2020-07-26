@@ -4,9 +4,11 @@ import Bluebird from 'bluebird';
 import { outputJSON, readJSON } from 'fs-extra';
 import { join } from 'path';
 import __root from '../../../__root';
-import { getHistoryPath } from '../../../util/getHistoryPath';
+import { getHistoryPath } from '../../util/getHistoryPath';
 import { IResultSuperlotto638, IRecordRow } from '@lazy-lotto/types';
 import fill from 'fill-range';
+import sortObject from 'sort-object-keys2';
+import { addRow } from '../../util/addRow';
 
 //doTask(new PlaywrightBrowser()).then(pb => pb.close())
 
@@ -44,14 +46,14 @@ export function doTask(pb: PlaywrightBrowser)
 							return Number(await td.innerText())
 						});
 
-						data[id] = {
+						addRow(id, data, {
 							id,
 							date,
 							result: [
 								ls.slice(0, 6),
 								ls.pop(),
 							],
-						}
+						});
 
 						return data;
 					});
@@ -77,14 +79,13 @@ export function doTask(pb: PlaywrightBrowser)
 									return Number(await td.innerText())
 								});
 
-								data[id] = {
-									...data[id],
+								addRow(id, data, {
 									id,
 									result: [
 										ls.slice(0, 6),
 										ls.pop(),
 									],
-								}
+								});
 
 								return data;
 							});
@@ -133,14 +134,14 @@ export function doTask(pb: PlaywrightBrowser)
 
 							ls.pop();
 
-							data[id] = {
+							addRow(id, data, {
 								id,
 								date,
 								result: [
 									ls.slice(0, 6),
 									ls.pop(),
 								],
-							}
+							});
 
 							return data;
 						});
@@ -157,6 +158,7 @@ export function doTask(pb: PlaywrightBrowser)
 				})
 				.finally(async () =>
 				{
+					//data = sortObject(data);
 
 					await outputJSON(targetFile, data, {
 						spaces: 2,

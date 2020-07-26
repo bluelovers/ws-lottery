@@ -6,8 +6,9 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.doTask = void 0;
 const bluebird_1 = __importDefault(require("bluebird"));
 const fs_extra_1 = require("fs-extra");
-const getHistoryPath_1 = require("../../../util/getHistoryPath");
+const getHistoryPath_1 = require("../../util/getHistoryPath");
 const fill_range_1 = __importDefault(require("fill-range"));
+const addRow_1 = require("../../util/addRow");
 //doTask(new PlaywrightBrowser()).then(pb => pb.close())
 function doTask(pb) {
     //pb ??= new PlaywrightBrowser();
@@ -28,14 +29,14 @@ function doTask(pb) {
                 let ls = await bluebird_1.default.map(tds.slice(-7), async (td) => {
                     return Number(await td.innerText());
                 });
-                data[id] = {
+                addRow_1.addRow(id, data, {
                     id,
                     date,
                     result: [
                         ls.slice(0, 6),
                         ls.pop(),
                     ],
-                };
+                });
                 return data;
             });
             await page.close();
@@ -49,14 +50,13 @@ function doTask(pb) {
                     let ls = await bluebird_1.default.map(tds.slice(1), async (td) => {
                         return Number(await td.innerText());
                     });
-                    data[id] = {
-                        ...data[id],
+                    addRow_1.addRow(id, data, {
                         id,
                         result: [
                             ls.slice(0, 6),
                             ls.pop(),
                         ],
-                    };
+                    });
                     return data;
                 });
                 await page.close();
@@ -86,14 +86,14 @@ function doTask(pb) {
                         return Number(await td.innerText());
                     });
                     ls.pop();
-                    data[id] = {
+                    addRow_1.addRow(id, data, {
                         id,
                         date,
                         result: [
                             ls.slice(0, 6),
                             ls.pop(),
                         ],
-                    };
+                    });
                     return data;
                 });
                 await page.close();
@@ -104,6 +104,7 @@ function doTask(pb) {
             //					});
         })
             .finally(async () => {
+            //data = sortObject(data);
             await fs_extra_1.outputJSON(targetFile, data, {
                 spaces: 2,
             });

@@ -6,6 +6,8 @@ import naturalCompare from '@bluelovers/string-natural-compare';
 
 let historyArray = (Object.values(superlotto638) as IRecordRow<IResultSuperlotto638>[]);
 
+historyArray = historyArray.reverse();
+
 export const weightTable: IRandomLottoParams["weightTable"] = historyArray
 	.reduce((a, row) =>
 	{
@@ -59,7 +61,7 @@ let g = randomLottoGenerator({
 
 let list = [];
 
-for (let i = 0; i < 50; i++)
+for (let i = 0; i < 100; i++)
 {
 	let actual = g.next().value;
 
@@ -117,7 +119,7 @@ function simpleMatchIn<T extends number[]>(current: T, historyArray: IRecordRow<
 
 		let m = simpleMatchInArray(current, v.result[0]);
 
-		if (m.length > 3)
+		if (m.length >= 2 && m.length < 5)
 		{
 			a[m.length] ??= [];
 			a[m.length].push(v.result[0])

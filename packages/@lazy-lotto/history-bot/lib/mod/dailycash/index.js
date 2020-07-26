@@ -6,7 +6,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.doTask = void 0;
 const bluebird_1 = __importDefault(require("bluebird"));
 const fs_extra_1 = require("fs-extra");
-const getHistoryPath_1 = require("../../../util/getHistoryPath");
+const getHistoryPath_1 = require("../../util/getHistoryPath");
+const addRow_1 = require("../../util/addRow");
 function doTask(pb) {
     //pb ??= new PlaywrightBrowser();
     return bluebird_1.default.resolve(pb)
@@ -26,13 +27,13 @@ function doTask(pb) {
                 let ls = await bluebird_1.default.map(tds.slice(-5), async (td) => {
                     return Number(await td.innerText());
                 });
-                data[id] = {
+                addRow_1.addRow(id, data, {
                     id,
                     date,
                     result: [
                         ls,
                     ],
-                };
+                });
                 return data;
             });
             await page.close();
@@ -41,6 +42,7 @@ function doTask(pb) {
             //					});
         })
             .finally(async () => {
+            //data = sortObject(data);
             await fs_extra_1.outputJSON(targetFile, data, {
                 spaces: 2,
             });

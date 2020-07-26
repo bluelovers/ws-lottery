@@ -4,8 +4,10 @@ import Bluebird from 'bluebird';
 import { outputJSON, readJSON } from 'fs-extra';
 import { join } from 'path';
 import __root from '../../../__root';
-import { getHistoryPath } from '../../../util/getHistoryPath';
+import { getHistoryPath } from '../../util/getHistoryPath';
 import { IResultSuperlotto638, IRecordRow, IResultDailyCash } from '@lazy-lotto/types';
+import sortObject from 'sort-object-keys2';
+import { addRow } from '../../util/addRow';
 
 export function doTask(pb: PlaywrightBrowser)
 {
@@ -41,13 +43,13 @@ export function doTask(pb: PlaywrightBrowser)
 							return Number(await td.innerText())
 						});
 
-						data[id] = {
+						addRow(id, data, {
 							id,
 							date,
 							result: [
 								ls,
 							],
-						}
+						});
 
 						return data;
 					});
@@ -61,6 +63,7 @@ export function doTask(pb: PlaywrightBrowser)
 				})
 				.finally(async () =>
 				{
+					//data = sortObject(data);
 
 					await outputJSON(targetFile, data, {
 						spaces: 2,

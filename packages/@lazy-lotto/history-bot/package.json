@@ -28,10 +28,12 @@
     "sort-package-json": "yarn-tool sort"
   },
   "dependencies": {
+    "@bluelovers/string-natural-compare": "^1.1.2",
     "bluebird": "^3.7.2",
     "fs-extra": "^9.0.1",
     "playwright": "^1.2.1",
-    "playwright-class": "^1.0.1"
+    "playwright-class": "^1.0.1",
+    "sort-object-keys2": "^2.0.3"
   },
   "publishConfig": {
     "access": "public"
