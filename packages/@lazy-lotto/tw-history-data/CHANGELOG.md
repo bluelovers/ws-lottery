@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.3](https://github.com/bluelovers/ws-lottery/compare/@lazy-lotto/tw-history-data@1.0.2...@lazy-lotto/tw-history-data@1.0.3) (2020-07-26)
+
+
+### 🐛　Bug Fixes
+
+* object sort ([6fd8b71](https://github.com/bluelovers/ws-lottery/commit/6fd8b71775882dda5e1fc714a7f3cfbdec51d5c0))
+
+
+
+
+
 ## [1.0.2](https://github.com/bluelovers/ws-lottery/compare/@lazy-lotto/tw-history-data@1.0.1...@lazy-lotto/tw-history-data@1.0.2) (2020-07-24)
 
 
