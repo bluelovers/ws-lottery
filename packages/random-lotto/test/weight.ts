@@ -28,7 +28,7 @@ export const weightTable: IRandomLottoParams["weightTable"] = historyArray
 		return a
 	}, [{}, {}] as IRandomLottoParams["weightTable"]);
 
-console.dir(weightTable)
+//console.dir(weightTable)
 
 Object.entries(weightTable[0])
 	.forEach((row) =>

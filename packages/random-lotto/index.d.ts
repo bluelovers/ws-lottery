@@ -21,4 +21,9 @@ export declare function handleOptions<T extends any[] = number[][]>(options: IRa
 };
 export declare function randomLottoGenerator<T extends any[] = number[][]>(options: IRandomLottoParams): Generator<T, T, unknown>;
 export declare function randomLotto<T extends any[] = number[][]>(options: IRandomLottoParams): T;
+export declare function randomLottoX<T extends any[] = number[][], R = T, O extends IRandomLottoParams = IRandomLottoParams>(options: O, xOptions?: {
+    limit?: number;
+    handler?(actual: T, index: number, options: O, result: R[]): R;
+    filter?(value: R, index: number, options: O, result: R[]): boolean;
+}): R[];
 export default randomLotto;

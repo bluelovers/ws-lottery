@@ -106,4 +106,38 @@ export function randomLotto<T extends any[] = number[][]>(options: IRandomLottoP
 		.value
 }
 
+export function randomLottoX<T extends any[] = number[][], R = T, O extends IRandomLottoParams = IRandomLottoParams>(options: O, xOptions: {
+	limit?: number,
+	handler?(actual: T, index: number, options: O, result: R[]): R
+	filter?(value : R, index: number, options: O, result: R[]): boolean,
+} = {}): R[]
+{
+	const fn = randomLottoGenerator<T>(options);
+
+	xOptions.limit |= 0;
+	if (xOptions.limit <= 0) xOptions.limit = 10;
+
+	const result: R[] = [];
+
+	while (result.length < xOptions.limit)
+	{
+		let limit = xOptions.limit - result.length;
+
+		while (limit-- > 0)
+		{
+			let index = result.length;
+
+			let actual: T = fn.next().value;
+			let value: R = xOptions.handler?.(actual, index, options, result) ?? actual as any;
+
+			if (value !== void 0 && value !== null && (xOptions.filter?.(value, index, options, result) ?? true))
+			{
+				result.push(value)
+			}
+		}
+	}
+
+	return result
+}
+
 export default randomLotto

@@ -3,7 +3,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.randomLotto = exports.randomLottoGenerator = exports.handleOptions = exports.handleOptionsRange = exports.defaultGetWeight = void 0;
+exports.randomLottoX = exports.randomLotto = exports.randomLottoGenerator = exports.handleOptions = exports.handleOptionsRange = exports.defaultGetWeight = void 0;
 const random_extra_1 = __importDefault(require("random-extra"));
 const string_natural_compare_1 = __importDefault(require("@bluelovers/string-natural-compare"));
 function defaultGetWeight(value, key, index, options, ...argv) {
@@ -69,5 +69,26 @@ function randomLotto(options) {
         .value;
 }
 exports.randomLotto = randomLotto;
+function randomLottoX(options, xOptions = {}) {
+    var _a, _b, _c, _d;
+    const fn = randomLottoGenerator(options);
+    xOptions.limit |= 0;
+    if (xOptions.limit <= 0)
+        xOptions.limit = 10;
+    const result = [];
+    while (result.length < xOptions.limit) {
+        let limit = xOptions.limit - result.length;
+        while (limit-- > 0) {
+            let index = result.length;
+            let actual = fn.next().value;
+            let value = (_b = (_a = xOptions.handler) === null || _a === void 0 ? void 0 : _a.call(xOptions, actual, index, options, result)) !== null && _b !== void 0 ? _b : actual;
+            if (value !== void 0 && value !== null && ((_d = (_c = xOptions.filter) === null || _c === void 0 ? void 0 : _c.call(xOptions, value, index, options, result)) !== null && _d !== void 0 ? _d : true)) {
+                result.push(value);
+            }
+        }
+    }
+    return result;
+}
+exports.randomLottoX = randomLottoX;
 exports.default = randomLotto;
 //# sourceMappingURL=index.js.map
