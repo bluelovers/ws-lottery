@@ -40,10 +40,10 @@
   },
   "resolutions": {},
   "devDependencies": {
-    "@bluelovers/tsconfig": "^1.0.19",
+    "@bluelovers/tsconfig": "^1.0.20",
     "@types/bluebird": "^3.5.32",
     "@types/fs-extra": "^9.0.1",
-    "@types/jest": "^26.0.5",
+    "@types/jest": "^26.0.7",
     "@types/node": "*"
   },
   "peerDependencies": {
