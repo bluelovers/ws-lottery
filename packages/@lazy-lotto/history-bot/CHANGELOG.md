@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.4](https://github.com/bluelovers/ws-lottery/compare/@lazy-lotto/history-bot@1.0.3...@lazy-lotto/history-bot@1.0.4) (2020-07-30)
+
+
+### 📦　Code Refactoring
+
+* update code ([4b8df43](https://github.com/bluelovers/ws-lottery/commit/4b8df437e8b17a293ed383421b3b64a4b50ac928))
+* rename ([3ecf101](https://github.com/bluelovers/ws-lottery/commit/3ecf101a9fe3cb6d3e1f7ed0ce2da50da7ff7950))
+
+
+
+
+
 ## [1.0.3](https://github.com/bluelovers/ws-lottery/compare/@lazy-lotto/history-bot@1.0.2...@lazy-lotto/history-bot@1.0.3) (2020-07-26)
 
 

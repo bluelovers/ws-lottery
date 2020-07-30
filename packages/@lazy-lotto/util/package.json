@@ -1,6 +1,6 @@
 {
   "name": "@lazy-lotto/util",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "",
   "keywords": [
     "lotto",
@@ -39,10 +39,8 @@
     "sort-package-json": "yarn-tool sort"
   },
   "dependencies": {
-    "@lazy-lotto/types": "^1.0.1"
+    "@lazy-lotto/types": "^1.0.2"
   },
-  "devDependencies": {},
-  "peerDependencies": {},
   "publishConfig": {
     "access": "public"
   }
