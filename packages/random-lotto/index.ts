@@ -118,6 +118,9 @@ export function randomLottoX<T extends any[] = number[][], R = T, O extends IRan
 	if (xOptions.limit <= 0) xOptions.limit = 10;
 
 	const result: R[] = [];
+	const cache = new Set<string>();
+
+	xOptions.handler ??= (actual) => actual as any;
 
 	while (result.length < xOptions.limit)
 	{
@@ -128,7 +131,18 @@ export function randomLottoX<T extends any[] = number[][], R = T, O extends IRan
 			let index = result.length;
 
 			let actual: T = fn.next().value;
-			let value: R = xOptions.handler?.(actual, index, options, result) ?? actual as any;
+			let cache_value = JSON.stringify(Array.isArray(actual[0]) ? actual[0].slice().sort() : actual[0]);
+
+			if (cache.has(cache_value))
+			{
+				continue;
+			}
+			else
+			{
+				cache.add(cache_value);
+			}
+
+			let value: R = xOptions.handler(actual, index, options, result);
 
 			if (value !== void 0 && value !== null && (xOptions.filter?.(value, index, options, result) ?? true))
 			{

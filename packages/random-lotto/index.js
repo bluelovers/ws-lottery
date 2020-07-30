@@ -70,19 +70,28 @@ function randomLotto(options) {
 }
 exports.randomLotto = randomLotto;
 function randomLottoX(options, xOptions = {}) {
-    var _a, _b, _c, _d;
+    var _a, _b, _c;
     const fn = randomLottoGenerator(options);
     xOptions.limit |= 0;
     if (xOptions.limit <= 0)
         xOptions.limit = 10;
     const result = [];
+    const cache = new Set();
+    (_a = xOptions.handler) !== null && _a !== void 0 ? _a : (xOptions.handler = (actual) => actual);
     while (result.length < xOptions.limit) {
         let limit = xOptions.limit - result.length;
         while (limit-- > 0) {
             let index = result.length;
             let actual = fn.next().value;
-            let value = (_b = (_a = xOptions.handler) === null || _a === void 0 ? void 0 : _a.call(xOptions, actual, index, options, result)) !== null && _b !== void 0 ? _b : actual;
-            if (value !== void 0 && value !== null && ((_d = (_c = xOptions.filter) === null || _c === void 0 ? void 0 : _c.call(xOptions, value, index, options, result)) !== null && _d !== void 0 ? _d : true)) {
+            let cache_value = JSON.stringify(Array.isArray(actual[0]) ? actual[0].slice().sort() : actual[0]);
+            if (cache.has(cache_value)) {
+                continue;
+            }
+            else {
+                cache.add(cache_value);
+            }
+            let value = xOptions.handler(actual, index, options, result);
+            if (value !== void 0 && value !== null && ((_c = (_b = xOptions.filter) === null || _b === void 0 ? void 0 : _b.call(xOptions, value, index, options, result)) !== null && _c !== void 0 ? _c : true)) {
                 result.push(value);
             }
         }
