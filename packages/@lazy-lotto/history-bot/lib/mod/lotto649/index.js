@@ -14,7 +14,7 @@ function doTask(pb) {
     //pb ??= new PlaywrightBrowser();
     return bluebird_1.default.resolve(pb)
         .then(async (pb) => {
-        let targetFile = getHistoryPath_1.getHistoryPath('lotto649.json');
+        let targetFile = getHistoryPath_1.getHistoryPath('lotto649.raw.json');
         let data = await fs_extra_1.readJSON(targetFile).catch(e => ({}));
         return bluebird_1.default.resolve(pb)
             .tap(async (pb) => {

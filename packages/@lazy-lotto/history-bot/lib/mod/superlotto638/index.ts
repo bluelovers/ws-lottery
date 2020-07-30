@@ -19,7 +19,7 @@ export function doTask(pb: PlaywrightBrowser)
 	return Bluebird.resolve(pb)
 		.tap(async (pb) =>
 		{
-			let targetFile = getHistoryPath('superlotto638.json');
+			let targetFile = getHistoryPath('superlotto638.raw.json');
 
 			let data: Record<string, IRecordRow<IResultSuperlotto638>> = await readJSON(targetFile).catch(e => ({}));
 

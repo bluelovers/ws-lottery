@@ -16,7 +16,7 @@ export function doTask(pb: PlaywrightBrowser)
 	return Bluebird.resolve(pb)
 		.then(async (pb) =>
 		{
-			let targetFile = getHistoryPath('DailyCash.json');
+			let targetFile = getHistoryPath('DailyCash.raw.json');
 
 			let data: Record<string, IRecordRow<IResultDailyCash>> = await readJSON(targetFile).catch(e => ({}));
 
