@@ -1,7 +1,7 @@
 {
-  "name": "random-lotto",
-  "version": "1.0.2",
-  "description": "generator random lotto 樂透獎號生成器",
+  "name": "@lazy-lotto/util",
+  "version": "1.0.0",
+  "description": "",
   "keywords": [
     "lotto",
     "lottery",
@@ -15,7 +15,7 @@
     "lotto649",
     "superlotto638"
   ],
-  "homepage": "https://github.com/bluelovers/ws-lottery/tree/master/packages/random-lotto#readme",
+  "homepage": "https://github.com/bluelovers/ws-lottery/tree/master/packages/@lazy-lotto/util#readme",
   "bugs": {
     "url": "https://github.com/bluelovers/ws-lottery/issues"
   },
@@ -28,19 +28,22 @@
   "main": "index.js",
   "scripts": {
     "lint": "ynpx --quiet eslint -- **/*.ts",
-    "test": "jest",
+    "test": "echo \"Error: no test specified\"",
     "test:jest": "ynpx --quiet jest -- --coverage",
     "test:mocha": "ynpx --quiet -p ts-node -p mocha mocha -- --require ts-node/register \"!(node_modules)/**/*.{test,spec}.{ts,tsx}\"",
-    "preversion": "yarn run prepublishOnly",
-    "prepublishOnly": "yarn run test",
+    "preversion": "yarn run test",
+    "prepublishOnly": "echo prepublishOnly",
     "prepublishOnly:check-bin": "ynpx --quiet @yarn-tool/check-pkg-bin",
     "prepublishOnly:update": "yarn run ncu && yarn run sort-package-json",
     "ncu": "yarn-tool ncu -u",
     "sort-package-json": "yarn-tool sort"
   },
   "dependencies": {
-    "@bluelovers/string-natural-compare": "^1.1.2",
-    "fill-range": "^7.0.1",
-    "random-extra": "^3.6.15"
+    "@lazy-lotto/types": "^1.0.1"
+  },
+  "devDependencies": {},
+  "peerDependencies": {},
+  "publishConfig": {
+    "access": "public"
   }
 }

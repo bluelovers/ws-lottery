@@ -121,6 +121,7 @@ export function randomLottoX<T extends any[] = number[][], R = T, O extends IRan
 	const cache = new Set<string>();
 
 	xOptions.handler ??= (actual) => actual as any;
+	xOptions.filter ??= (value) => value !== void 0 && value !== null;
 
 	while (result.length < xOptions.limit)
 	{
@@ -144,7 +145,7 @@ export function randomLottoX<T extends any[] = number[][], R = T, O extends IRan
 
 			let value: R = xOptions.handler(actual, index, options, result);
 
-			if (value !== void 0 && value !== null && (xOptions.filter?.(value, index, options, result) ?? true))
+			if (value !== void 0 && value !== null && (xOptions.filter(value, index, options, result)))
 			{
 				result.push(value)
 			}

@@ -1,6 +1,6 @@
 export interface IRecordRow<R extends any[]> {
     id: string;
-    date: string;
+    date?: string;
     result: R;
 }
 export declare type IResultSuperlotto638 = [

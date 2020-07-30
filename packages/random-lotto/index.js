@@ -70,7 +70,7 @@ function randomLotto(options) {
 }
 exports.randomLotto = randomLotto;
 function randomLottoX(options, xOptions = {}) {
-    var _a, _b, _c;
+    var _a, _b;
     const fn = randomLottoGenerator(options);
     xOptions.limit |= 0;
     if (xOptions.limit <= 0)
@@ -78,6 +78,7 @@ function randomLottoX(options, xOptions = {}) {
     const result = [];
     const cache = new Set();
     (_a = xOptions.handler) !== null && _a !== void 0 ? _a : (xOptions.handler = (actual) => actual);
+    (_b = xOptions.filter) !== null && _b !== void 0 ? _b : (xOptions.filter = (value) => value !== void 0 && value !== null);
     while (result.length < xOptions.limit) {
         let limit = xOptions.limit - result.length;
         while (limit-- > 0) {
@@ -91,7 +92,7 @@ function randomLottoX(options, xOptions = {}) {
                 cache.add(cache_value);
             }
             let value = xOptions.handler(actual, index, options, result);
-            if (value !== void 0 && value !== null && ((_c = (_b = xOptions.filter) === null || _b === void 0 ? void 0 : _b.call(xOptions, value, index, options, result)) !== null && _c !== void 0 ? _c : true)) {
+            if (value !== void 0 && value !== null && (xOptions.filter(value, index, options, result))) {
                 result.push(value);
             }
         }

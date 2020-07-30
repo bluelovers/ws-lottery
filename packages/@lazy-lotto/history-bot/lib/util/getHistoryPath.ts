@@ -1,7 +1,12 @@
 import { join } from "path";
 import __root from '../../__root';
 
-export function getHistoryPath(filename: string, root = 'tw-history-data')
+export function getHistoryPath(filename: string, options?: {
+	root?: string
+	subPath?: string
+})
 {
-	return join(__root, '..', root, 'lib/data', filename.toLowerCase())
+	let { root = 'tw-history-data', subPath = 'lib/data' } = options ?? {};
+
+	return join(__root, '..', root, subPath, filename.toLowerCase())
 }

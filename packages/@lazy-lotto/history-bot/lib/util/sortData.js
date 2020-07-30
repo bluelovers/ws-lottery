@@ -4,11 +4,11 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.sortData = void 0;
-const sort_object_keys2_1 = __importDefault(require("sort-object-keys2"));
-const string_natural_compare_1 = __importDefault(require("@bluelovers/string-natural-compare"));
+const index_1 = __importDefault(require("sort-object-keys2/index"));
+const index_2 = __importDefault(require("@bluelovers/string-natural-compare/index"));
 function sortData(data) {
-    data = sort_object_keys2_1.default(data, {
-        sort: string_natural_compare_1.default,
+    data = index_1.default(data, {
+        sort: index_2.default,
     });
     return data;
 }

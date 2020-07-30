@@ -1,6 +1,6 @@
-import { IRecordRow } from '@lazy-lotto/types';
+import { IRecordRow } from '@lazy-lotto/types/index';
 
-export function addRow<R extends IRecordRow<any>>(id: string | number, data: Record<string, R>, row: Partial<R>)
+export function addRow<R extends IRecordRow<any[]>>(id: string | number, data: Record<string, R>, row: Partial<R>)
 {
 	let old =	getRow(id, data);
 
@@ -14,7 +14,7 @@ export function addRow<R extends IRecordRow<any>>(id: string | number, data: Rec
 	return result
 }
 
-export function getRow<T extends Record<string, IRecordRow<any>>>(id: string | number, data: T)
+export function getRow<T extends Record<string, IRecordRow<any[]>>>(id: string | number, data: T)
 {
 	return data[Number(id)]
 }

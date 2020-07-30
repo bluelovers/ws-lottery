@@ -1,6 +1,4 @@
 import superlotto638 from '@lazy-lotto/tw-history-data/lib/data/superlotto638.json';
-import random from 'random-extra';
-import { Random } from 'random-extra/src';
 import naturalCompare from '@bluelovers/string-natural-compare';
 import { IRandomLottoParams } from '../../index';
 import { IRecordRow, IResultSuperlotto638 } from '@lazy-lotto/types';
@@ -8,11 +6,21 @@ import { inspect } from "util";
 
 inspect.defaultOptions.colors = true;
 
-export function getWeightTable<T extends IRecordRow<any> = IRecordRow<IResultSuperlotto638>>(historyData: Record<string, T> = superlotto638 as any)
+export function getWeightTable<T extends IRecordRow<any[]> = IRecordRow<IResultSuperlotto638>>(options?: {
+	historyData?: Record<string, T>,
+	historyLimit?: number,
+})
 {
+	let { historyData = superlotto638, historyLimit = Infinity } = options ?? {};
+
 	let historyArray = (Object.values(historyData) as T[]);
 
 	historyArray = historyArray.reverse();
+
+	if (historyLimit < historyArray.length)
+	{
+		historyArray = historyArray.slice(0, historyLimit)
+	}
 
 	const weightTable: IRandomLottoParams["weightTable"] = historyArray
 		.reduce((a, row) =>
@@ -34,6 +42,8 @@ export function getWeightTable<T extends IRecordRow<any> = IRecordRow<IResultSup
 			return a
 		}, [{}, {}] as IRandomLottoParams["weightTable"]);
 
+	console.dir(weightTable[0])
+
 	Object.entries(weightTable[0])
 		.forEach((row) =>
 		{
@@ -46,7 +56,7 @@ export function getWeightTable<T extends IRecordRow<any> = IRecordRow<IResultSup
 		})
 	;
 
-	console.dir(weightTable[0])
+	//console.dir(weightTable[0])
 
 	return {
 		historyArray,
@@ -54,103 +64,3 @@ export function getWeightTable<T extends IRecordRow<any> = IRecordRow<IResultSup
 	}
 }
 
-function simpleMatchInArray<T extends number[]>(a1: T, a2: T)
-{
-	return a2.filter(v => a1.includes(v))
-}
-
-export function simpleMatchIn<T extends number[]>(current: T, historyArray: IRecordRow<[
-	T,
-	...any
-]>[])
-{
-	let bool: boolean
-	let match: number = 0;
-
-	let ls = historyArray.reduce((a, v, index) =>
-	{
-
-		let m = simpleMatchInArray(current, v.result[0]);
-
-		if (m.length >= 2 && m.length < 5)
-		{
-			a[m.length] ??= [];
-			a[m.length].push(v.result[0])
-
-			match = Math.max(m.length, match)
-
-			bool = true;
-		}
-		else if (index < 20)
-		{
-			a[m.length] ??= [];
-			a[m.length].push(v.result[0])
-
-			match = Math.max(m.length, match)
-
-			bool = true;
-		}
-
-		return a
-	}, {} as Record<string, T[]>)
-
-	if (bool === true)
-	{
-		return {
-			current,
-			match,
-			//ls,
-			follow: followArea(current),
-		}
-	}
-}
-
-export function followArea<T extends number[]>(current: T)
-{
-	let count: number = 0;
-	let map: Record<string, number> = {};
-
-	current.forEach(value =>
-	{
-		[
-			[1, 7],
-			[8, 14],
-			[15, 21],
-			[22, 28],
-			[29, 35],
-			[36, 39],
-		].some(([min, max], index) =>
-		{
-			if (value >= min && value <= max)
-			{
-				map[index] ??= 0;
-				map[index]++;
-				return true
-			}
-		})
-	});
-
-	let skip = false;
-
-	count = Object.values(map).filter(v =>
-	{
-
-		if (v > 3)
-		{
-			skip = true;
-		}
-
-		return v > 2
-	}).length;
-
-	if (count > 1 || Object.values(map).filter(v => v >= 2).length < 1 || ((map[3] ?? 0) + (map[4] ?? 0) + (map[5] ?? 0)) > 4 || ((map[2] ?? 0) + (map[3] ?? 0) + (map[4] ?? 0)) > 4 || ((map[0] ?? 0) + (map[1] ?? 0) + (map[2] ?? 0)) > 4)
-	{
-		skip = true;
-	}
-
-	return {
-		count,
-		skip,
-		map,
-	};
-}

@@ -22,12 +22,11 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-require("./lib/mod/dailycash");
-require("./lib/mod/lotto649");
-require("./lib/mod/superlotto638");
 const bluebird_1 = __importDefault(require("bluebird"));
 const path_1 = require("path");
 const playwright_class_1 = __importDefault(require("playwright-class"));
+const build_history_data_extra_1 = require("./lib/util/build-history-data-extra");
+const path_2 = require("path");
 exports.default = bluebird_1.default.resolve(new playwright_class_1.default())
     .tap(pb => {
     return bluebird_1.default.each([
@@ -38,6 +37,7 @@ exports.default = bluebird_1.default.resolve(new playwright_class_1.default())
         console.time(target);
         await Promise.resolve().then(() => __importStar(require(path_1.join(__dirname, target)))).then(m => m.default(pb))
             .catch(e => console.error(e));
+        await build_history_data_extra_1.buildHistoryDataExtra(path_2.parse(target).name);
         console.timeEnd(target);
     });
 })

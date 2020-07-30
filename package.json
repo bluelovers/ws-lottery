@@ -32,7 +32,7 @@
     "prepublishOnly:lockfile": "ynpx --quiet sync-lockfile",
     "postpublishOnly": "echo postpublishOnly",
     "ncu": "yarn run ncu:root && yarn run ncu:ws",
-    "ncu:root": "yarn-tool ncu -- -u",
+    "ncu:root": "yarn-tool ncu -u",
     "ncu:ws": "yarn-tool ws exec yarn-tool ncu -- -u",
     "sort-package-json": "yarn run sort-package-json:root && yarn run sort-package-json:ws",
     "sort-package-json:root": "yarn-tool sort",
@@ -55,6 +55,6 @@
   "dependencies": {
     "debug-color2": "^1.2.3",
     "jest": "^26.1.0",
-    "ts-jest": "^26.1.3"
+    "ts-jest": "^26.1.4"
   }
 }
