@@ -28,7 +28,7 @@ export function getWeightTable<T extends IRecordRow<any[]> = IRecordRow<IResultS
 
 			row.result[0].forEach(v =>
 			{
-				a[0][v] ??= 1;
+				a[0][v] ??= 0;
 				a[0][v]++;
 			})
 
@@ -36,7 +36,7 @@ export function getWeightTable<T extends IRecordRow<any[]> = IRecordRow<IResultS
 
 			let v2 = row.result[1];
 
-			a[1][v2] ??= 1;
+			a[1][v2] ??= 0;
 			a[1][v2]++;
 
 			return a
