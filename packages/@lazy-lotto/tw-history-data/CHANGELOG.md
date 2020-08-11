@@ -3,6 +3,26 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.6](https://github.com/bluelovers/ws-lottery/compare/@lazy-lotto/tw-history-data@1.0.5...@lazy-lotto/tw-history-data@1.0.6) (2020-08-11)
+
+
+### 🛠　Build System
+
+* update cache ([3453562](https://github.com/bluelovers/ws-lottery/commit/3453562290e199b64b08b1812ed025e0e83b6f54))
+* update cache ([447c88b](https://github.com/bluelovers/ws-lottery/commit/447c88bc09582c870cf0011736c0c491ac68d73f))
+* update cache ([0e07a17](https://github.com/bluelovers/ws-lottery/commit/0e07a1703bb6941bd2259452edd7c25190f1e534))
+* update cache ([fbee545](https://github.com/bluelovers/ws-lottery/commit/fbee545b4487c5333861d355193319ea574cdddb))
+* update cache ([8a2bea5](https://github.com/bluelovers/ws-lottery/commit/8a2bea511daf27343923439802b9178273073dfc))
+* update cache ([a69445a](https://github.com/bluelovers/ws-lottery/commit/a69445ad57034be8f512d0d00a7c5fc520d2c468))
+* update cache ([69df86e](https://github.com/bluelovers/ws-lottery/commit/69df86e1b2491ebba1793fc139399b02bdcac68e))
+* update cache ([7b03c57](https://github.com/bluelovers/ws-lottery/commit/7b03c57c86e702755317a94ba9ad97ceb09fae46))
+* update cache ([0ef46f6](https://github.com/bluelovers/ws-lottery/commit/0ef46f6d9476abd2ce0d84906af31634deac9c45))
+* update cache ([ae8531e](https://github.com/bluelovers/ws-lottery/commit/ae8531e6c06d69dbf8d6f88320cdaa9cd4383921))
+
+
+
+
+
 ## [1.0.5](https://github.com/bluelovers/ws-lottery/compare/@lazy-lotto/tw-history-data@1.0.4...@lazy-lotto/tw-history-data@1.0.5) (2020-08-02)
 
 

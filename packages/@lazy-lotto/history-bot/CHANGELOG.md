@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.5](https://github.com/bluelovers/ws-lottery/compare/@lazy-lotto/history-bot@1.0.4...@lazy-lotto/history-bot@1.0.5) (2020-08-11)
+
+
+### ✨　Features
+
+* add defaultGoToOptions for avoid timeout ([27bba6a](https://github.com/bluelovers/ws-lottery/commit/27bba6a48e211ee83adba3c7efb7f1f058a3a9cf))
+
+
+### ♻️　Chores
+
+* update deps ([2e37302](https://github.com/bluelovers/ws-lottery/commit/2e3730222158cfd7b67bad2de7fff135fc48bebe))
+
+
+
+
+
 ## [1.0.4](https://github.com/bluelovers/ws-lottery/compare/@lazy-lotto/history-bot@1.0.3...@lazy-lotto/history-bot@1.0.4) (2020-07-30)
 
 
