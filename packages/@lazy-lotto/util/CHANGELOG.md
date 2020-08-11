@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.3](https://github.com/bluelovers/ws-lottery/compare/@lazy-lotto/util@1.0.2...@lazy-lotto/util@1.0.3) (2020-08-11)
+
+
+### 🐛　Bug Fixes
+
+* wrong defaultFollowAreaRanges ([e695a04](https://github.com/bluelovers/ws-lottery/commit/e695a04028792ec8f060614abba1d66955e33926))
+
+
+
+
+
 ## [1.0.2](https://github.com/bluelovers/ws-lottery/compare/@lazy-lotto/util@1.0.1...@lazy-lotto/util@1.0.2) (2020-08-11)
 
 
