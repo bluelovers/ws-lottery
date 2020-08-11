@@ -1,7 +1,7 @@
 import { IRecordRow } from '@lazy-lotto/types/index';
-import { IFollowAreaOptions } from './lib/area/followArea';
 import { ISimpleMatchInOptions } from './lib/match/simpleMatchIn';
 import { ISimpleAnalyzeHistoryOptions, ISimpleAnalyzeHistoryRow } from './lib/analyze/simpleAnalyzeHistory';
+import { IFollowAreaOptions } from './lib/area/types';
 export declare function followArea<T extends number[]>(current: T, options?: IFollowAreaOptions): {
     count: number;
     skip: boolean;

@@ -1,5 +1,4 @@
 import { IRecordRow } from '@lazy-lotto/types/index';
-import { followAreaRanges, IFollowAreaOptions, defaultFollowAreaFilter } from './lib/area/followArea';
 import {
 	defaultSimpleMatchInFilter,
 	defaultSimpleMatchInArray,
@@ -10,6 +9,9 @@ import {
 	ISimpleAnalyzeHistoryOptions,
 	ISimpleAnalyzeHistoryRow,
 } from './lib/analyze/simpleAnalyzeHistory';
+import { followAreaRanges } from './lib/area/followAreaRanges';
+import { IFollowAreaOptions } from './lib/area/types';
+import { defaultFollowAreaFilter } from './lib/area/defaultFollowAreaFilter';
 
 export function followArea<T extends number[]>(current: T, options?: IFollowAreaOptions)
 {

@@ -1,5 +1,5 @@
-import { IFollowAreaOptions } from '../area/followArea';
 import { IRecordRow } from '@lazy-lotto/types/index';
+import { IFollowAreaOptions } from '../area/types';
 export declare function defaultSimpleMatchInFilter<T extends number>(m: T[], index: number, options: ISimpleMatchInOptions<T>, current: T[], historyRow: IRecordRow<[
     T[],
     ...any
