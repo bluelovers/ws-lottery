@@ -8,6 +8,7 @@ import { getHistoryPath } from '../../util/getHistoryPath';
 import { IResultSuperlotto638, IRecordRow, IResultDailyCash } from '@lazy-lotto/types';
 import sortObject from 'sort-object-keys2';
 import { addRow } from '../../util/addRow';
+import { defaultGoToOptions } from '../../util/defaultGoToOptions';
 
 export function doTask(pb: PlaywrightBrowser)
 {
@@ -25,7 +26,7 @@ export function doTask(pb: PlaywrightBrowser)
 				{
 
 					const page = await pb.newPage();
-					await page.goto('http://lotto.arclink.com.tw/Lotto39jhdz.html');
+					await page.goto('http://lotto.arclink.com.tw/Lotto39jhdz.html', defaultGoToOptions);
 //	await page.goto('https://www.taiwanlottery.com.tw/lotto/superlotto638/history2.aspx');
 
 					let trs = await page.$$('table[width="780"] tr[onmouseover]');

@@ -9,6 +9,7 @@ import { IResultSuperlotto638, IRecordRow } from '@lazy-lotto/types';
 import fill from 'fill-range';
 import sortObject from 'sort-object-keys2';
 import { addRow } from '../../util/addRow';
+import { defaultGoToOptions } from '../../util/defaultGoToOptions';
 
 //doTask(new PlaywrightBrowser()).then(pb => pb.close())
 
@@ -28,7 +29,7 @@ export function doTask(pb: PlaywrightBrowser)
 				{
 
 					const page = await pb.newPage();
-					await page.goto('http://lotto.arclink.com.tw/Lotto49jhdz.html');
+					await page.goto('http://lotto.arclink.com.tw/Lotto49jhdz.html', defaultGoToOptions);
 //	await page.goto('https://www.taiwanlottery.com.tw/lotto/superlotto638/history2.aspx');
 
 					let trs = await page.$$('table[width="780"] tr[onmouseover]');
@@ -63,7 +64,7 @@ export function doTask(pb: PlaywrightBrowser)
 					await pb.newPage()
 						.then(async (page) => {
 
-							await page.goto(`http://lotto.arclink.com.tw/jsp/lotto/historyKind10100.jsp?n1=&n2=&n3=`);
+							await page.goto(`http://lotto.arclink.com.tw/jsp/lotto/historyKind10100.jsp?n1=&n2=&n3=`, defaultGoToOptions);
 
 							let trs = await page.$$('table tr[id^="p"]');
 
@@ -115,7 +116,7 @@ export function doTask(pb: PlaywrightBrowser)
 						//console.dir(href)
 
 						const page = await pb.newPage();
-						await page.goto(href);
+						await page.goto(href, defaultGoToOptions);
 
 						let trs = await page.$$('tr[onmouseover][onmouseout]');
 

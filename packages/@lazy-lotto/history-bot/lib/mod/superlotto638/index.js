@@ -9,6 +9,7 @@ const fs_extra_1 = require("fs-extra");
 const getHistoryPath_1 = require("../../util/getHistoryPath");
 const fill_range_1 = __importDefault(require("fill-range"));
 const addRow_1 = require("../../util/addRow");
+const defaultGoToOptions_1 = require("../../util/defaultGoToOptions");
 //doTask(new PlaywrightBrowser()).then(pb => pb.close())
 function doTask(pb) {
     //pb ??= new PlaywrightBrowser();
@@ -19,7 +20,7 @@ function doTask(pb) {
         return bluebird_1.default.resolve(pb)
             .tap(async (pb) => {
             const page = await pb.newPage();
-            await page.goto('http://lotto.arclink.com.tw/Lotto388jhdz.html');
+            await page.goto('http://lotto.arclink.com.tw/Lotto388jhdz.html', defaultGoToOptions_1.defaultGoToOptions);
             //	await page.goto('https://www.taiwanlottery.com.tw/lotto/superlotto638/history2.aspx');
             let trs = await page.$$('table[width="780"] tr[onmouseover]');
             await bluebird_1.default.each(trs, async (tr) => {
@@ -42,7 +43,7 @@ function doTask(pb) {
             await page.close();
             await pb.newPage()
                 .then(async (page) => {
-                await page.goto(`http://lotto.arclink.com.tw/jsp/lotto/historyKind120100.jsp?n1=&n2=&n3=`);
+                await page.goto(`http://lotto.arclink.com.tw/jsp/lotto/historyKind120100.jsp?n1=&n2=&n3=`, defaultGoToOptions_1.defaultGoToOptions);
                 let trs = await page.$$('table tr[id^="p"]');
                 await bluebird_1.default.each(trs, async (tr) => {
                     let tds = await tr.$$('td');
@@ -74,7 +75,7 @@ function doTask(pb) {
             ].map((ls, index) => `http://lotto.arclink.com.tw/Lottonocheck.do?type=12&limit=50&num1=${ls[0]}&num2=${ls[1]}&num3=${ls[2]}&num4=${ls[3]}&num5=${ls[4]}&num6=${ls[5]}&num7=${index + 1}&Submit=%B9%EF%A4%F1%ACd%B8%DF`)), async (href) => {
                 //console.dir(href)
                 const page = await pb.newPage();
-                await page.goto(href);
+                await page.goto(href, defaultGoToOptions_1.defaultGoToOptions);
                 let trs = await page.$$('tr[onmouseover][onmouseout]');
                 await bluebird_1.default.each(trs, async (tr) => {
                     let tds = await tr.$$('td');
