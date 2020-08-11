@@ -43,7 +43,7 @@
     "@bluelovers/tsconfig": "^1.0.20",
     "@types/bluebird": "^3.5.32",
     "@types/fs-extra": "^9.0.1",
-    "@types/jest": "^26.0.7",
+    "@types/jest": "^26.0.9",
     "@types/node": "*"
   },
   "peerDependencies": {
@@ -54,7 +54,7 @@
   },
   "dependencies": {
     "debug-color2": "^1.2.3",
-    "jest": "^26.1.0",
-    "ts-jest": "^26.1.4"
+    "jest": "^26.3.0",
+    "ts-jest": "^26.2.0"
   }
 }
