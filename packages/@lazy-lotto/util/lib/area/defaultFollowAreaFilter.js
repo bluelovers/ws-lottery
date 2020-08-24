@@ -14,10 +14,10 @@ function defaultFollowAreaFilter(current, options, map) {
         if (b >= 2) {
             c2++;
         }
-        if (b > 3) {
+        if (b > 4) {
             skip = true;
         }
-        if ((a + b) > 4) {
+        if ((a + b) > 5) {
             skip = true;
         }
         return b;

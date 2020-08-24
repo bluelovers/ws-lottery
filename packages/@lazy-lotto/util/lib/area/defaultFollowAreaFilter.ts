@@ -26,12 +26,12 @@ export function defaultFollowAreaFilter<T extends number[]>(current: T,
 				c2++
 			}
 
-			if (b > 3)
+			if (b > 4)
 			{
 				skip = true;
 			}
 
-			if ((a + b) > 4)
+			if ((a + b) > 5)
 			{
 				skip = true;
 			}
