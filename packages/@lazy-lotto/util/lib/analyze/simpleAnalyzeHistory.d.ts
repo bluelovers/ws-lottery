@@ -1,6 +1,6 @@
 import { ISimpleMatchInOptions } from '../match/simpleMatchIn';
 import { IRecordRow } from '@lazy-lotto/types/index';
-export declare type ISimpleAnalyzeHistoryRow<T> = T & {
+export type ISimpleAnalyzeHistoryRow<T> = T & {
     match: Record<string, number>;
     ids: Record<string, string>;
     dates: Record<string, string>;

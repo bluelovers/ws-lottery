@@ -7,7 +7,7 @@ exports.sortData = void 0;
 const index_1 = __importDefault(require("sort-object-keys2/index"));
 const index_2 = __importDefault(require("@bluelovers/string-natural-compare/index"));
 function sortData(data) {
-    data = index_1.default(data, {
+    data = (0, index_1.default)(data, {
         sort: index_2.default,
     });
     return data;

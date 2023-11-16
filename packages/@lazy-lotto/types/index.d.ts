@@ -3,11 +3,11 @@ export interface IRecordRow<R extends any[]> {
     date?: string;
     result: R;
 }
-export declare type IResultSuperlotto638 = [
+export type IResultSuperlotto638 = [
     number[],
     number
 ];
 export type { IResultSuperlotto638 as IResultLotto649 };
-export declare type IResultDailyCash = [
+export type IResultDailyCash = [
     number[]
 ];

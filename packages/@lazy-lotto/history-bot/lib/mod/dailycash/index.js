@@ -13,8 +13,8 @@ function doTask(pb) {
     //pb ??= new PlaywrightBrowser();
     return bluebird_1.default.resolve(pb)
         .then(async (pb) => {
-        let targetFile = getHistoryPath_1.getHistoryPath('DailyCash.raw.json');
-        let data = await fs_extra_1.readJSON(targetFile).catch(e => ({}));
+        let targetFile = (0, getHistoryPath_1.getHistoryPath)('DailyCash.raw.json');
+        let data = await (0, fs_extra_1.readJSON)(targetFile).catch(e => ({}));
         return bluebird_1.default.resolve(pb)
             .tap(async (pb) => {
             const page = await pb.newPage();
@@ -28,7 +28,7 @@ function doTask(pb) {
                 let ls = await bluebird_1.default.map(tds.slice(-5), async (td) => {
                     return Number(await td.innerText());
                 });
-                addRow_1.addRow(id, data, {
+                (0, addRow_1.addRow)(id, data, {
                     id,
                     date,
                     result: [
@@ -44,7 +44,7 @@ function doTask(pb) {
         })
             .finally(async () => {
             //data = sortObject(data);
-            await fs_extra_1.outputJSON(targetFile, data, {
+            await (0, fs_extra_1.outputJSON)(targetFile, data, {
                 spaces: 2,
             });
             //return pb.close()

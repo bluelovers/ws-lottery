@@ -27,7 +27,7 @@ jobs:
       - uses: actions/checkout@master
       - uses: actions/setup-node@master
         with:
-          node-version: 14
+          node-version: 20
       - uses: microsoft/playwright-github-action@v1
       - name: get yarn cache dir
         id: yarn-cache
@@ -52,7 +52,9 @@ jobs:
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
       - name: install deps
-        run: yarn run ci:install
+        run: |
+          yarn run ci:install
+          npx playwright install --with-deps
       - name: run script
         if: success()
 #        env:

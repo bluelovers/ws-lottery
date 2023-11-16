@@ -1,7 +1,11 @@
 "use strict";
 var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
     if (k2 === undefined) k2 = k;
-    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
+    var desc = Object.getOwnPropertyDescriptor(m, k);
+    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
+      desc = { enumerable: true, get: function() { return m[k]; } };
+    }
+    Object.defineProperty(o, k2, desc);
 }) : (function(o, m, k, k2) {
     if (k2 === undefined) k2 = k;
     o[k2] = m[k];
@@ -35,9 +39,9 @@ exports.default = bluebird_1.default.resolve(new playwright_class_1.default())
         './lib/mod/superlotto638'
     ], async (target) => {
         console.time(target);
-        await Promise.resolve().then(() => __importStar(require(path_1.join(__dirname, target)))).then(m => m.default(pb))
+        await Promise.resolve(`${(0, path_1.join)(__dirname, target)}`).then(s => __importStar(require(s))).then(m => m.default(pb))
             .catch(e => console.error(e));
-        await build_history_data_extra_1.buildHistoryDataExtra(path_2.parse(target).name);
+        await (0, build_history_data_extra_1.buildHistoryDataExtra)((0, path_2.parse)(target).name);
         console.timeEnd(target);
     });
 })

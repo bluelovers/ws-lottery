@@ -15,8 +15,8 @@ function doTask(pb) {
     //pb ??= new PlaywrightBrowser();
     return bluebird_1.default.resolve(pb)
         .then(async (pb) => {
-        let targetFile = getHistoryPath_1.getHistoryPath('lotto649.raw.json');
-        let data = await fs_extra_1.readJSON(targetFile).catch(e => ({}));
+        let targetFile = (0, getHistoryPath_1.getHistoryPath)('lotto649.raw.json');
+        let data = await (0, fs_extra_1.readJSON)(targetFile).catch(e => ({}));
         return bluebird_1.default.resolve(pb)
             .tap(async (pb) => {
             const page = await pb.newPage();
@@ -30,7 +30,7 @@ function doTask(pb) {
                 let ls = await bluebird_1.default.map(tds.slice(-7), async (td) => {
                     return Number(await td.innerText());
                 });
-                addRow_1.addRow(id, data, {
+                (0, addRow_1.addRow)(id, data, {
                     id,
                     date,
                     result: [
@@ -51,7 +51,7 @@ function doTask(pb) {
                     let ls = await bluebird_1.default.map(tds.slice(1), async (td) => {
                         return Number(await td.innerText());
                     });
-                    addRow_1.addRow(id, data, {
+                    (0, addRow_1.addRow)(id, data, {
                         id,
                         result: [
                             ls.slice(0, 6),
@@ -65,14 +65,14 @@ function doTask(pb) {
             await bluebird_1.default.each([
                 `http://lotto.arclink.com.tw/Lottonocheck.do?type=1`,
             ].concat([
-                fill_range_1.default(1, 6),
-                fill_range_1.default(7, 12),
-                fill_range_1.default(13, 18),
-                fill_range_1.default(19, 24),
-                fill_range_1.default(25, 30),
-                fill_range_1.default(31, 36),
-                fill_range_1.default(37, 42),
-                fill_range_1.default(43, 48),
+                (0, fill_range_1.default)(1, 6),
+                (0, fill_range_1.default)(7, 12),
+                (0, fill_range_1.default)(13, 18),
+                (0, fill_range_1.default)(19, 24),
+                (0, fill_range_1.default)(25, 30),
+                (0, fill_range_1.default)(31, 36),
+                (0, fill_range_1.default)(37, 42),
+                (0, fill_range_1.default)(43, 48),
                 [4, 15, 22, 37, 49, 39, 1],
             ].map((ls, index) => `http://lotto.arclink.com.tw/Lottonocheck.do?type=1&limit=50&num1=${ls[0]}&num2=${ls[1]}&num3=${ls[2]}&num4=${ls[3]}&num5=${ls[4]}&num6=${ls[5]}&Submit=%B9%EF%A4%F1%ACd%B8%DF`)), async (href) => {
                 //console.dir(href)
@@ -87,7 +87,7 @@ function doTask(pb) {
                         return Number(await td.innerText());
                     });
                     ls.pop();
-                    addRow_1.addRow(id, data, {
+                    (0, addRow_1.addRow)(id, data, {
                         id,
                         date,
                         result: [
@@ -106,7 +106,7 @@ function doTask(pb) {
         })
             .finally(async () => {
             //data = sortObject(data);
-            await fs_extra_1.outputJSON(targetFile, data, {
+            await (0, fs_extra_1.outputJSON)(targetFile, data, {
                 spaces: 2,
             });
             //return pb.close()

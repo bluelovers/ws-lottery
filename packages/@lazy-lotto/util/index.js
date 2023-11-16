@@ -7,7 +7,7 @@ const followAreaRanges_1 = require("./lib/area/followAreaRanges");
 const defaultFollowAreaFilter_1 = require("./lib/area/defaultFollowAreaFilter");
 function followArea(current, options) {
     var _a;
-    let map = followAreaRanges_1.followAreaRanges(current, options);
+    let map = (0, followAreaRanges_1.followAreaRanges)(current, options);
     return ((_a = options === null || options === void 0 ? void 0 : options.followAreaFilter) !== null && _a !== void 0 ? _a : defaultFollowAreaFilter_1.defaultFollowAreaFilter)(current, options, map);
 }
 exports.followArea = followArea;
@@ -42,7 +42,7 @@ function simpleAnalyzeHistory(historyData, options) {
     historyArray = historyArray.reverse();
     return historyArray
         .reduce((a, b) => {
-        a.push(simpleAnalyzeHistory_1.simpleAnalyzeHistoryRow(b, historyArray, options));
+        a.push((0, simpleAnalyzeHistory_1.simpleAnalyzeHistoryRow)(b, historyArray, options));
         return a;
     }, []);
 }
