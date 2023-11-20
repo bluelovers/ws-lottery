@@ -1,8 +1,8 @@
 {
   "name": "@lazy-lotto/history-bot",
   "version": "1.0.5",
-  "description": "",
   "private": true,
+  "description": "",
   "keywords": [
     "lotto",
     "lottery",
@@ -10,14 +10,28 @@
     "威力彩",
     "獎號"
   ],
+  "homepage": "https://github.com/bluelovers/ws-lottery/tree/master/packages/@lazy-lotto/history-bot#readme",
+  "bugs": {
+    "url": "https://github.com/bluelovers/ws-lottery/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bluelovers/ws-lottery.git",
+    "directory": "packages/@lazy-lotto/history-bot"
+  },
   "license": "ISC",
   "author": "bluelovers",
   "main": "index.js",
   "scripts": {
+    "coverage": "yarn run test -- --coverage",
     "lint": "ynpx --quiet eslint -- **/*.ts",
     "test": "echo \"Error: no test specified\"",
     "test:jest": "ynpx --quiet jest -- --coverage",
+    "test:jest:coverage": "yarn run test:jest -- --coverage",
+    "test:jest:snapshot": "yarn run test:jest -- -u",
     "test:mocha": "ynpx --quiet -p ts-node -p mocha mocha -- --require ts-node/register \"!(node_modules)/**/*.{test,spec}.{ts,tsx}\"",
+    "test:snapshot": "yarn run test -- -u",
+    "test:tsd": "ynpx tsd",
     "build": "node index.js",
     "postbuild": "yarn workspace @lazy-lotto/tw-history-data run preversion",
     "preversion": "yarn run prepublishOnly",
@@ -25,7 +39,8 @@
     "prepublishOnly:check-bin": "ynpx --quiet @yarn-tool/check-pkg-bin",
     "prepublishOnly:update": "yarn run ncu && yarn run sort-package-json",
     "ncu": "yarn-tool ncu -u",
-    "sort-package-json": "yarn-tool sort"
+    "sort-package-json": "yarn-tool sort",
+    "tsc:showConfig": "ynpx get-current-tsconfig -p"
   },
   "dependencies": {
     "@bluelovers/string-natural-compare": "^2.0.11",

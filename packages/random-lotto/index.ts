@@ -1,6 +1,6 @@
 import random from 'random-extra';
-import { Random } from 'random-extra/src';
-import naturalCompare from '@bluelovers/string-natural-compare';
+import type { Random } from 'random-extra/src';
+import { naturalCompare } from '@bluelovers/string-natural-compare';
 import { IGetWeight } from '@lazy-random/df-item-by-weight';
 
 export interface IRandomLottoParams

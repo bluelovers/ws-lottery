@@ -3,7 +3,7 @@ import fill from 'fill-range';
 import { inspect } from 'util';
 import { getWeightTable } from './util';
 import { _createWeight, _percentageWeight, _calcWeight } from '@lazy-random/df-item-by-weight';
-import naturalCompare from '@bluelovers/string-natural-compare';
+import { naturalCompare } from '@bluelovers/string-natural-compare';
 import random from 'random-extra';
 import { simpleMatchIn } from '@lazy-lotto/util/index';
 import { defaultSimpleMatchInFilter } from '@lazy-lotto/util/lib/match/simpleMatchIn';

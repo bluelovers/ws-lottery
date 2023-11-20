@@ -1,4 +1,4 @@
-import { Random } from 'random-extra/src';
+import type { Random } from 'random-extra/src';
 import { IGetWeight } from '@lazy-random/df-item-by-weight';
 export interface IRandomLottoParams {
     random?: Random;

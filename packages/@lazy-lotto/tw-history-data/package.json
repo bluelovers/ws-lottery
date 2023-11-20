@@ -21,7 +21,8 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/bluelovers/ws-lottery.git"
+    "url": "git+https://github.com/bluelovers/ws-lottery.git",
+    "directory": "packages/@lazy-lotto/tw-history-data"
   },
   "license": "ISC",
   "author": "bluelovers",
@@ -30,13 +31,20 @@
     "lib": "lib"
   },
   "scripts": {
+    "coverage": "yarn run test -- --coverage",
     "test": "echo \"Error: no test specified\"",
+    "test:jest": "jest --passWithNoTests",
+    "test:jest:coverage": "yarn run test:jest -- --coverage",
+    "test:jest:snapshot": "yarn run test:jest -- -u",
+    "test:snapshot": "yarn run test -- -u",
+    "test:tsd": "ynpx tsd",
     "preversion": "git commit -m \"build: update cache\" ./lib & echo preversion",
     "prepublishOnly_": "yarn run test",
     "prepublishOnly:check-bin": "ynpx --quiet @yarn-tool/check-pkg-bin",
     "prepublishOnly:update": "yarn run ncu && yarn run sort-package-json",
     "ncu": "yarn-tool ncu -u",
-    "sort-package-json": "yarn-tool sort"
+    "sort-package-json": "yarn-tool sort",
+    "tsc:showConfig": "ynpx get-current-tsconfig -p"
   },
   "publishConfig": {
     "access": "public"

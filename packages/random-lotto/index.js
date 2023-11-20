@@ -5,7 +5,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.randomLottoX = exports.randomLotto = exports.randomLottoGenerator = exports.handleOptions = exports.handleOptionsRange = exports.defaultGetWeight = void 0;
 const random_extra_1 = __importDefault(require("random-extra"));
-const string_natural_compare_1 = __importDefault(require("@bluelovers/string-natural-compare"));
+const string_natural_compare_1 = require("@bluelovers/string-natural-compare");
 function defaultGetWeight(value, key, index, options, ...argv) {
     var _a, _b;
     // @ts-ignore
@@ -55,7 +55,7 @@ function* randomLottoGenerator(options) {
             }
             let value = ret.map(v => v[1]);
             if (sortResults === true) {
-                value = value.sort(string_natural_compare_1.default);
+                value = value.sort(string_natural_compare_1.naturalCompare);
             }
             return value;
         });
