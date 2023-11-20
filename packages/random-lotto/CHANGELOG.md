@@ -3,6 +3,33 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.4](https://github.com/bluelovers/ws-lottery/compare/random-lotto@1.0.3...random-lotto@1.0.4) (2023-11-20)
+
+
+### BREAKING CHANGES
+
+* update deps
+
+
+
+### ⚙️　Continuous Integration
+
+* update cron ([5e260db](https://github.com/bluelovers/ws-lottery/commit/5e260dbdfa92eef601cc3f102c1fc853cf1ad1a8))
+
+
+### 📌　Dependencies
+
+* update deps ([b19ac30](https://github.com/bluelovers/ws-lottery/commit/b19ac30b9c098dd18a2a463e23325d2eb4c7dc79))
+
+
+### 🔖　Miscellaneous
+
+* . ([23ff2cc](https://github.com/bluelovers/ws-lottery/commit/23ff2ccb511dee99c17fbe8aa56274e5e0feb74b))
+* . ([1887a64](https://github.com/bluelovers/ws-lottery/commit/1887a64edca91d2c6649de7f344e0d9d470c3f38))
+* . ([dc20fbf](https://github.com/bluelovers/ws-lottery/commit/dc20fbf5dd28545d629e00c4225672291906fc47))
+
+
+
 ## [1.0.3](https://github.com/bluelovers/ws-lottery/compare/random-lotto@1.0.2...random-lotto@1.0.3) (2020-07-30)
 
 

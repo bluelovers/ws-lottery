@@ -3,6 +3,26 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.5](https://github.com/bluelovers/ws-lottery/compare/@lazy-lotto/util@1.0.4...@lazy-lotto/util@1.0.5) (2023-11-20)
+
+
+### BREAKING CHANGES
+
+* update deps
+
+
+
+### 📌　Dependencies
+
+* update deps ([b19ac30](https://github.com/bluelovers/ws-lottery/commit/b19ac30b9c098dd18a2a463e23325d2eb4c7dc79))
+
+
+### 🔖　Miscellaneous
+
+* . ([dc20fbf](https://github.com/bluelovers/ws-lottery/commit/dc20fbf5dd28545d629e00c4225672291906fc47))
+
+
+
 ## [1.0.4](https://github.com/bluelovers/ws-lottery/compare/@lazy-lotto/util@1.0.3...@lazy-lotto/util@1.0.4) (2020-08-24)
 
 

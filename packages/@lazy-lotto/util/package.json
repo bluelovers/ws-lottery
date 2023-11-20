@@ -1,6 +1,6 @@
 {
   "name": "@lazy-lotto/util",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "",
   "keywords": [
     "lotto",
@@ -46,7 +46,7 @@
     "tsc:showConfig": "ynpx get-current-tsconfig -p"
   },
   "dependencies": {
-    "@lazy-lotto/types": "^1.0.2"
+    "@lazy-lotto/types": "^1.0.3"
   },
   "publishConfig": {
     "access": "public"
