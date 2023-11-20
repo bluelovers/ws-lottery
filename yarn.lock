@@ -636,10 +636,16 @@
     "@lazy-random/shared-lib" "^1.0.15"
     "@lazy-random/util-distributions" "^1.0.10"
 
-"@lazy-random/df-char-id@^1.0.14":
-  version "1.0.14"
-  resolved "https://registry.npmjs.org/@lazy-random/df-char-id/-/df-char-id-1.0.14.tgz#d31fa9f67d29b47f5167f6bfbabeb3d942854907"
-  integrity sha512-tLz3zDoz8rE4Kn9YmCYXs/2VnAXvJDB7gWwp7jWk7pyw+nHT1DHgC7xDbhkL3CIRXYg/hjQMx3GE3CLG1hRNXQ==
+"@lazy-random/df-char-id@^1.0.15":
+  version "1.0.15"
+  resolved "https://registry.npmjs.org/@lazy-random/df-char-id/-/df-char-id-1.0.15.tgz#a7f93a520f5e9dc40bcd764b7906ae836f7dc04f"
+  integrity sha512-vZ8lrf9bWG3ru5k+JwomzhcsEUhoO1JT2MxXgGEyUNyIaKYsdjCdNWEBTh1J35yBCLay9/2vSjdka1qZ0Lpnsw==
+  dependencies:
+    "@lazy-num/float-to-string" "^1.0.11"
+    "@lazy-random/expect" "^1.0.15"
+    "@lazy-random/shared-lib" "^1.0.15"
+    "@lazy-random/util-distributions" "^1.0.10"
+    uni-string "^2.0.5"
 
 "@lazy-random/df-item-by-weight@^1.0.10":
   version "1.0.10"
@@ -687,14 +693,14 @@
     "@lazy-random/df-uniform" "^1.0.11"
     "@lazy-random/shared-lib" "^1.0.15"
 
-"@lazy-random/distributions@^2.0.2":
-  version "2.0.2"
-  resolved "https://registry.npmjs.org/@lazy-random/distributions/-/distributions-2.0.2.tgz#5b4f385b9c69f739c6593a1ca883926cc1c74d94"
-  integrity sha512-b0bmqq02uw9AskmnNUOqIFJd0U+LdpnKxc+fLWe5FbmjpgQNCU/avlbKqpS9IzM+ieZV8CiMQyuLdXyAdZLOhA==
+"@lazy-random/distributions@^2.0.3":
+  version "2.0.3"
+  resolved "https://registry.npmjs.org/@lazy-random/distributions/-/distributions-2.0.3.tgz#f764f8ee7f33d90250696320604bcc58d4e624ac"
+  integrity sha512-FCDVZol6IS2TvaFg2aF3CYoMjQYKU5K1E71HEkSuBbzJY8TFXA3y0R+KRZQ503T359sSMcyiv0Tq7RBjZqgp0g==
   dependencies:
     "@lazy-random/df-algorithm" "^1.0.13"
     "@lazy-random/df-array" "^2.0.2"
-    "@lazy-random/df-char-id" "^1.0.14"
+    "@lazy-random/df-char-id" "^1.0.15"
     "@lazy-random/df-item-by-weight" "^1.0.10"
     "@lazy-random/df-poisson" "^1.0.13"
     "@lazy-random/df-sum" "^1.0.13"
@@ -776,12 +782,12 @@
   resolved "https://registry.npmjs.org/@lazy-random/original-math-random/-/original-math-random-1.0.10.tgz#d8fd8fdd4198b14944b5524f6e65a33d2797e66f"
   integrity sha512-uw1XzVwKYA1+5Vwc0+CRW6MxKXPVWJOuzhe81sZdQyoDlQ2lfH0XTsF8S+Vutwsfht/eEDreNSMSKZ80Y6l6Ww==
 
-"@lazy-random/random-core@^2.0.2":
-  version "2.0.2"
-  resolved "https://registry.npmjs.org/@lazy-random/random-core/-/random-core-2.0.2.tgz#af0889e47079a1595283090ca382cec44d706b08"
-  integrity sha512-VmxAAmZV47cUVgmcp56MLLvUu+gGiD46skcFPLh64VkqlSZ7CUd66KWx/4PYcyIJmD9/95UUinXgYMpSUzJn0Q==
+"@lazy-random/random-core@^2.0.3":
+  version "2.0.3"
+  resolved "https://registry.npmjs.org/@lazy-random/random-core/-/random-core-2.0.3.tgz#60b72ccda79942d0e6530d2efd8024032ccdd716"
+  integrity sha512-T3humUSYX7T9z0ExkdlTINj9KGxb7tsDEfQCbjnb52wnITYF2kGXpUn+FHTz3X+G1IbwrozylOhWfmYSOvZENw==
   dependencies:
-    "@lazy-random/distributions" "^2.0.2"
+    "@lazy-random/distributions" "^2.0.3"
     "@lazy-random/expect" "^1.0.15"
     "@lazy-random/rng-abstract" "^1.0.13"
     "@lazy-random/shared-lib" "^1.0.15"
@@ -2421,13 +2427,13 @@ pure-rand@^6.0.0:
   resolved "https://registry.npmjs.org/pure-rand/-/pure-rand-6.0.4.tgz#50b737f6a925468679bff00ad20eade53f37d5c7"
   integrity sha512-LA0Y9kxMYv47GIPJy6MI84fqTd2HmYZI83W/kM/SkKfDlajnZYfmXFTxkbY+xSBPkLJxltMa9hIkmdc29eguMA==
 
-random-extra@^5.0.1:
-  version "5.0.1"
-  resolved "https://registry.npmjs.org/random-extra/-/random-extra-5.0.1.tgz#90d251a2c6a4b62bd978b97461b57e9d3275ab75"
-  integrity sha512-EPQDQpsiioqe/rr1cnQORo4S9ewa2QVdBoxOBAZTSBrBN/jdPEHhQJtOPahvIsNJhxFHtQDAettWhggpX5dsWw==
+random-extra@^5.0.2:
+  version "5.0.2"
+  resolved "https://registry.npmjs.org/random-extra/-/random-extra-5.0.2.tgz#438c20911923ac1c02417b2431f555e3b85a42e7"
+  integrity sha512-htiYEKnm/VQ/4IXOfW4BjHM5sCi/4pVGNNJPMu65tzM6SulHBXXSDhA1rX16t18CqWIFjdovOZKEC19IrEH7RQ==
   dependencies:
     "@lazy-random/clone-class" "^1.0.11"
-    "@lazy-random/random-core" "^2.0.2"
+    "@lazy-random/random-core" "^2.0.3"
     "@lazy-random/rng-factory" "^1.0.10"
 
 react-is@^18.0.0:
