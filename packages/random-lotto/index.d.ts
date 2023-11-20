@@ -1,5 +1,5 @@
 import { Random } from 'random-extra/src';
-import { IGetWeight } from 'random-extra/src/distributions/internal/item-by-weight';
+import { IGetWeight } from '@lazy-random/df-item-by-weight';
 export interface IRandomLottoParams {
     random?: Random;
     ranges: Parameters<Random["dfItemByWeightUnique"]>[];
@@ -12,11 +12,11 @@ export interface IRandomLottoGetWeight<T extends unknown, K extends string = str
     (value: T, key: K, index: number, options: IRandomLottoParams, ...argv: any[]): number;
 }
 export declare function defaultGetWeight<T extends unknown, K extends string = string>(value: T, key: K, index: number, options: IRandomLottoParams, ...argv: any[]): number;
-export declare function handleOptionsRange<T extends any[] = number[][]>(argv: Parameters<Random["dfItemByWeightUnique"]>, index: number, options: IRandomLottoParams): [arr: import("random-extra/src/distributions/internal/item-by-weight").IObjectInput<unknown, string>, size: number, options?: import("random-extra/src/distributions/internal/item-by-weight").IOptionsItemByWeight<unknown, string>, ...argv: any[]];
+export declare function handleOptionsRange<T extends any[] = number[][]>(argv: Parameters<Random["dfItemByWeightUnique"]>, index: number, options: IRandomLottoParams): [arr: import("@lazy-random/df-item-by-weight").IObjectInput<unknown, string>, size: number, options?: import("@lazy-random/df-item-by-weight").IOptionsItemByWeight<unknown, string>, ...argv: any[]];
 export declare function handleOptions<T extends any[] = number[][]>(options: IRandomLottoParams): {
-    rnd: Random<import("random-extra/src/rng").RNG>;
+    rnd: Random<import("@lazy-random/rng-abstract").RNG>;
     weightTable: Record<string, number>[];
-    fns: ((() => import("random-extra/src/distributions/internal/item-by-weight").IWeightEntrie<unknown, string>[]) | (() => import("random-extra/src/distributions/internal/item-by-weight").IWeightEntrie<unknown, string>))[];
+    fns: ((() => import("@lazy-random/df-item-by-weight").IWeightEntrie<unknown, string>[]) | (() => import("@lazy-random/df-item-by-weight").IWeightEntrie<unknown, string>))[];
     options: IRandomLottoParams;
 };
 export declare function randomLottoGenerator<T extends any[] = number[][]>(options: IRandomLottoParams): Generator<T, T, unknown>;

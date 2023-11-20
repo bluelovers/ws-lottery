@@ -2,7 +2,7 @@ import { randomLottoX } from '../index';
 import fill from 'fill-range';
 import { inspect } from 'util';
 import { getWeightTable } from './util';
-import { _createWeight, _percentageWeight, _calcWeight } from 'random-extra/src/distributions/internal/item-by-weight';
+import { _createWeight, _percentageWeight, _calcWeight } from '@lazy-random/df-item-by-weight';
 import naturalCompare from '@bluelovers/string-natural-compare';
 import random from 'random-extra';
 import { simpleMatchIn } from '@lazy-lotto/util/index';
@@ -42,7 +42,7 @@ export let list = randomLottoX({
 		let { vlist, kwlist } = _calcWeight(options.random, argv[0], argv[2]);
 
 		vlist.sort((a, b) => {
-			return naturalCompare(a[1], b[1])
+			return naturalCompare(a[1] as any, b[1] as any)
 		})
 
 		console.dir(kwlist)
