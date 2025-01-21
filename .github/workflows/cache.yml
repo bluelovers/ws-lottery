@@ -55,6 +55,7 @@ jobs:
         run: |
           npx playwright install --with-deps
           yarn run ci:install
+          npx playwright install --with-deps
           
       - name: run script
         if: success()
