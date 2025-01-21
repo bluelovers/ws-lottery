@@ -24,10 +24,10 @@ jobs:
     runs-on: ubuntu-latest
     if: "!contains(github.event.head_commit.message, '[skip ci]')"
     steps:
-      - uses: actions/checkout@master
-      - uses: actions/setup-node@master
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: lts/*
 #      - uses: microsoft/playwright-github-action@v1
       - name: get yarn cache dir
         id: yarn-cache
