@@ -53,8 +53,8 @@ jobs:
           git config --local user.name "GitHub Action"
       - name: install deps
         run: |
-          npx playwright install --with-deps
           yarn run ci:install
+          yarn playwright install
           npx playwright install --with-deps
           
       - name: run script
