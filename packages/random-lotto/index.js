@@ -3,7 +3,12 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.randomLottoX = exports.randomLotto = exports.randomLottoGenerator = exports.handleOptions = exports.handleOptionsRange = exports.defaultGetWeight = void 0;
+exports.defaultGetWeight = defaultGetWeight;
+exports.handleOptionsRange = handleOptionsRange;
+exports.handleOptions = handleOptions;
+exports.randomLottoGenerator = randomLottoGenerator;
+exports.randomLotto = randomLotto;
+exports.randomLottoX = randomLottoX;
 const random_extra_1 = __importDefault(require("random-extra"));
 const string_natural_compare_1 = require("@bluelovers/string-natural-compare");
 function defaultGetWeight(value, key, index, options, ...argv) {
@@ -11,7 +16,6 @@ function defaultGetWeight(value, key, index, options, ...argv) {
     // @ts-ignore
     return ((_b = (_a = options.weightTable) === null || _a === void 0 ? void 0 : _a[index]) === null || _b === void 0 ? void 0 : _b[value]) || 1;
 }
-exports.defaultGetWeight = defaultGetWeight;
 function handleOptionsRange(argv, index, options) {
     var _a, _b, _c, _d, _e;
     let opts = argv[2] || {};
@@ -22,7 +26,6 @@ function handleOptionsRange(argv, index, options) {
     argv = (_e = (_d = options.handleOptionsRangeArgv) === null || _d === void 0 ? void 0 : _d.call(options, argv, index, options)) !== null && _e !== void 0 ? _e : argv;
     return argv;
 }
-exports.handleOptionsRange = handleOptionsRange;
 function handleOptions(options) {
     var _a, _b, _c;
     const rnd = (_a = options.random) !== null && _a !== void 0 ? _a : (options.random = random_extra_1.default);
@@ -43,7 +46,6 @@ function handleOptions(options) {
         options,
     };
 }
-exports.handleOptions = handleOptions;
 function* randomLottoGenerator(options) {
     const { fns } = handleOptions(options);
     const { sortResults } = options;
@@ -62,13 +64,11 @@ function* randomLottoGenerator(options) {
         yield result;
     }
 }
-exports.randomLottoGenerator = randomLottoGenerator;
 function randomLotto(options) {
     return randomLottoGenerator(options)
         .next()
         .value;
 }
-exports.randomLotto = randomLotto;
 function randomLottoX(options, xOptions = {}) {
     var _a, _b;
     const fn = randomLottoGenerator(options);
@@ -99,6 +99,5 @@ function randomLottoX(options, xOptions = {}) {
     }
     return result;
 }
-exports.randomLottoX = randomLottoX;
 exports.default = randomLotto;
 //# sourceMappingURL=index.js.map

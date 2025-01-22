@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.followAreaRanges = void 0;
+exports.followAreaRanges = followAreaRanges;
 const defaultFollowAreaRanges_1 = require("./defaultFollowAreaRanges");
 function followAreaRanges(current, options) {
     let map = {};
@@ -17,5 +17,4 @@ function followAreaRanges(current, options) {
     });
     return map;
 }
-exports.followAreaRanges = followAreaRanges;
 //# sourceMappingURL=followAreaRanges.js.map

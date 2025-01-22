@@ -1,6 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.simpleAnalyzeHistory = exports.simpleMatchIn = exports.followArea = void 0;
+exports.followArea = followArea;
+exports.simpleMatchIn = simpleMatchIn;
+exports.simpleAnalyzeHistory = simpleAnalyzeHistory;
 const simpleMatchIn_1 = require("./lib/match/simpleMatchIn");
 const simpleAnalyzeHistory_1 = require("./lib/analyze/simpleAnalyzeHistory");
 const followAreaRanges_1 = require("./lib/area/followAreaRanges");
@@ -10,7 +12,6 @@ function followArea(current, options) {
     let map = (0, followAreaRanges_1.followAreaRanges)(current, options);
     return ((_a = options === null || options === void 0 ? void 0 : options.followAreaFilter) !== null && _a !== void 0 ? _a : defaultFollowAreaFilter_1.defaultFollowAreaFilter)(current, options, map);
 }
-exports.followArea = followArea;
 function simpleMatchIn(current, historyArray, index, options) {
     let bool;
     let match = 0;
@@ -36,7 +37,6 @@ function simpleMatchIn(current, historyArray, index, options) {
         };
     }
 }
-exports.simpleMatchIn = simpleMatchIn;
 function simpleAnalyzeHistory(historyData, options) {
     let historyArray = Object.values(historyData);
     historyArray = historyArray.reverse();
@@ -46,5 +46,4 @@ function simpleAnalyzeHistory(historyData, options) {
         return a;
     }, []);
 }
-exports.simpleAnalyzeHistory = simpleAnalyzeHistory;
 //# sourceMappingURL=index.js.map

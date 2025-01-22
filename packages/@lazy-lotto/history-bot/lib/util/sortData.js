@@ -3,7 +3,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.sortData = void 0;
+exports.sortData = sortData;
 const index_1 = __importDefault(require("sort-object-keys2/index"));
 const index_2 = __importDefault(require("@bluelovers/string-natural-compare/index"));
 function sortData(data) {
@@ -12,5 +12,4 @@ function sortData(data) {
     });
     return data;
 }
-exports.sortData = sortData;
 //# sourceMappingURL=sortData.js.map

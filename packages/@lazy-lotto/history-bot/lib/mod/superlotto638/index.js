@@ -3,7 +3,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.doTask = void 0;
+exports.doTask = doTask;
 const bluebird_1 = __importDefault(require("bluebird"));
 const fs_extra_1 = require("fs-extra");
 const getHistoryPath_1 = require("../../util/getHistoryPath");
@@ -111,6 +111,5 @@ function doTask(pb) {
         });
     });
 }
-exports.doTask = doTask;
 exports.default = doTask;
 //# sourceMappingURL=index.js.map

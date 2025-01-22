@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.buildHistoryDataExtra = void 0;
+exports.buildHistoryDataExtra = buildHistoryDataExtra;
 const getHistoryPath_1 = require("./getHistoryPath");
 const fs_extra_1 = require("fs-extra");
 const index_1 = require("@lazy-lotto/util/index");
@@ -17,5 +17,4 @@ async function buildHistoryDataExtra(modName) {
         spaces: 2
     });
 }
-exports.buildHistoryDataExtra = buildHistoryDataExtra;
 //# sourceMappingURL=build-history-data-extra.js.map

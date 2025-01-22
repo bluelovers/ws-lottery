@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.simpleAnalyzeHistoryRow = void 0;
+exports.simpleAnalyzeHistoryRow = simpleAnalyzeHistoryRow;
 const simpleMatchIn_1 = require("../match/simpleMatchIn");
 function simpleAnalyzeHistoryRow(current, historyArray, options) {
     let match = {};
@@ -29,5 +29,4 @@ function simpleAnalyzeHistoryRow(current, historyArray, options) {
         maxMatch,
     };
 }
-exports.simpleAnalyzeHistoryRow = simpleAnalyzeHistoryRow;
 //# sourceMappingURL=simpleAnalyzeHistory.js.map

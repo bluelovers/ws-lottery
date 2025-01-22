@@ -16,7 +16,7 @@ export declare function handleOptionsRange<T extends any[] = number[][]>(argv: P
 export declare function handleOptions<T extends any[] = number[][]>(options: IRandomLottoParams): {
     rnd: Random<import("@lazy-random/rng-abstract").RNG>;
     weightTable: Record<string, number>[];
-    fns: ((() => import("@lazy-random/df-item-by-weight").IWeightEntrie<unknown, string>[]) | (() => import("@lazy-random/df-item-by-weight").IWeightEntrie<unknown, string>))[];
+    fns: ((() => import("@lazy-random/df-item-by-weight").IWeightEntrie<unknown, string>) | (() => import("@lazy-random/df-item-by-weight").IWeightEntrie<unknown, string>[]))[];
     options: IRandomLottoParams;
 };
 export declare function randomLottoGenerator<T extends any[] = number[][]>(options: IRandomLottoParams): Generator<T, T, unknown>;

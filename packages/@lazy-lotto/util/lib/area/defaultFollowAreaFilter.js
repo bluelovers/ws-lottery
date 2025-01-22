@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.defaultFollowAreaFilter = void 0;
+exports.defaultFollowAreaFilter = defaultFollowAreaFilter;
 function defaultFollowAreaFilter(current, options, map) {
     let count = 0;
     let skip = false;
@@ -32,5 +32,4 @@ function defaultFollowAreaFilter(current, options, map) {
         map,
     };
 }
-exports.defaultFollowAreaFilter = defaultFollowAreaFilter;
 //# sourceMappingURL=defaultFollowAreaFilter.js.map
