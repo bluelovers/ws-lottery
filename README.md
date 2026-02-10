@@ -1,12 +1,4 @@
-# README.md
 
-    <%= description %>
+https://github.com/bluelovers/test-vercel-server
 
-## install
-
-```bash
-yarn add <%= name %>
-yarn-tool add <%= name %>
-yt add <%= name %>
-```
-
+https://test-vercel-server.vercel.app/lotto
