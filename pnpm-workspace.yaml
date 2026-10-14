@@ -1,0 +1,44 @@
+packages:
+  # all packages in subdirs of packages/ and components/
+  - 'packages/*'
+  # exclude packages that are inside test/ directories
+  - '!**/test/**'
+  - packages/@lazy-lotto/*
+
+# publicHoistPattern:
+#   - "ts-type"
+#   - "@bluelovers/tsconfig"
+#   - "@bluelovers/jest-config"
+#   - "@types/node"
+#   - "@types/jest"
+#   - "jest"
+#   - "ts-jest"
+#   - "ts-node"
+#   - "tsx"
+#   - "tslib"
+
+linkWorkspacePackages: true
+saveWorkspaceProtocol: false
+#  設定決定了 當依賴版本重疊時，pnpm 該優先用「本地程式碼」還是「線上版本」。
+preferWorkspacePackages: true
+
+# ignoreWorkspaceRootCheck: true
+
+# onlyBuiltDependencies: []
+# ignoredBuiltDependencies: []
+minimumReleaseAgeExclude:
+  - '@bluelovers/string-natural-compare'
+  - '@lazy-array/util-unique'
+  - '@yarn-tool/find-root'
+  - '@yarn-tool/ws-find-up-paths'
+  - find-yarn-workspace-root2
+  - sort-object-keys2
+  - '@lazy-num/sum'
+  - '@lazy-random/df-sum'
+  - '@lazy-random/distributions'
+  - '@lazy-random/random-core'
+  - random-extra
+allowBuilds:
+  '@parcel/watcher': true
+  lib-r-math.js: true
+  unrs-resolver: true

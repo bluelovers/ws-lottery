@@ -31,19 +31,14 @@
     "lib": "lib"
   },
   "scripts": {
-    "coverage": "yarn run test -- --coverage",
-    "test": "echo \"Error: no test specified\"",
+    "coverage": "pnpm run test --coverage",
+    "test": "node --run test:node --",
     "test:jest": "jest --passWithNoTests",
-    "test:jest:coverage": "yarn run test:jest -- --coverage",
-    "test:jest:snapshot": "yarn run test:jest -- -u",
-    "test:snapshot": "yarn run test -- -u",
+    "test:node": "tsx --test --test-update-snapshots **/*.node-spec.ts **/*.node-test.ts **/*.spec.ts **/*.test.ts",
+    "test:snapshot": "pnpm run test -u",
+    "test:tsc": "tsc --noEmit & echo typescript check done",
     "test:tsd": "ynpx tsd",
     "preversion": "git commit -m \"build: update cache\" ./lib & echo preversion",
-    "prepublishOnly_": "yarn run test",
-    "prepublishOnly:check-bin": "ynpx --quiet @yarn-tool/check-pkg-bin",
-    "prepublishOnly:update": "yarn run ncu && yarn run sort-package-json",
-    "ncu": "yarn-tool ncu -u",
-    "sort-package-json": "yarn-tool sort",
     "tsc:showConfig": "ynpx get-current-tsconfig -p"
   },
   "publishConfig": {

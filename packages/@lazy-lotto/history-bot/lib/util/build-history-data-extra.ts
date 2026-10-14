@@ -1,7 +1,7 @@
 import { getHistoryPath } from './getHistoryPath';
 import { readJSON, outputJSON } from 'fs-extra';
-import { IRecordRow } from '@lazy-lotto/types/index';
-import { simpleAnalyzeHistory } from '@lazy-lotto/util/index';
+import { IRecordRow } from '@lazy-lotto/types';
+import { simpleAnalyzeHistory } from '@lazy-lotto/util';
 import { ISimpleAnalyzeHistoryRow } from '@lazy-lotto/util/lib/analyze/simpleAnalyzeHistory';
 
 export async function buildHistoryDataExtra<T extends IRecordRow<any[]>>(modName: string)

@@ -1,4 +1,4 @@
-name: build lotto cache
+name: build-pnpm
 
 on:
   workflow_dispatch:
@@ -6,61 +6,65 @@ on:
     branches:
       - master
       - main
-  schedule:
-# https://help.github.com/en/actions/automating-your-workflow-with-github-actions/events-that-trigger-workflows#scheduled-events-schedule
-#            ┌───────────── minute (0 - 59)
-#            │ ┌───────────── hour (0 - 23)
-#            │ │ ┌───────────── day of the month (1 - 31)
-#            │ │ │ ┌───────────── month (1 - 12 or JAN-DEC)
-#            │ │ │ │ ┌───────────── day of the week (0 - 6 or SUN-SAT)
-#            │ │ │ │ │
-#            │ │ │ │ │
-#            │ │ │ │ │
-#            * * * * *
-    - cron: '0 0 * * *'
+    paths-ignore:
+      - 'test/**'
+      - '.run/**'
+      - '.github/**'
+      - '/*.*'
+      - '/.*'
+#  schedule:
+## https://help.github.com/en/actions/automating-your-workflow-with-github-actions/events-that-trigger-workflows#scheduled-events-schedule
+##            ┌───────────── minute (0 - 59)
+##            │ ┌───────────── hour (0 - 23)
+##            │ │ ┌───────────── day of the month (1 - 31)
+##            │ │ │ ┌───────────── month (1 - 12 or JAN-DEC)
+##            │ │ │ │ ┌───────────── day of the week (0 - 6 or SUN-SAT)
+##            │ │ │ │ │
+##            │ │ │ │ │
+##            │ │ │ │ │
+##            * * * * *
+#    - cron: '* * 1 * *'
+#    - cron: '* * 15 * *'
 
 jobs:
   build:
     runs-on: ubuntu-latest
     if: "!contains(github.event.head_commit.message, '[skip ci]')"
+
+    strategy:
+      matrix:
+        node-version: [ 26 ]
+
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/checkout@main
         with:
-          node-version: lts/*
-#      - uses: microsoft/playwright-github-action@v1
-      - name: get yarn cache dir
-        id: yarn-cache
-        run: echo "::set-output name=dir::$(yarn cache dir)"
+          fetch-depth: 2
+          token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Set up Node.js ${{ matrix.node-version }} + pnpm
+        uses: pnpm/setup@v1
+        with:
+          version: next-12
+          runtime: node@${{ matrix.node-version }}
+          cache: true
       - name: set cache id
         id: id-cache
         run: echo "::set-output name=id::${GITHUB_SHA}"
       - name: echo var
         run: |
-          echo ${{ steps.yarn-cache.outputs.dir }}
           echo ${{ steps.id-cache.outputs.id }}
           echo ${GITHUB_SHA}
-      - name: yarn cache
-        uses: bluelovers/github-actions-cache@2020011001
-        with:
-          path: ${{ steps.yarn-cache.outputs.dir }}
-          key: ${{ runner.os }}-yarn-${{ steps.id-cache.outputs.id }}
-          restore-keys: |
-            ${{ runner.os }}-yarn-
       - name: setup git config
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
       - name: install deps
         run: |
-          yarn run ci:install
-          yarn playwright install
-          npx playwright install --with-deps
-          
+          pnpm install --frozen-lockfile
+          pnpm run ci:install
+          pnpm playwright install --with-deps
       - name: run script
         if: success()
-#        env:
-        run: yarn run ci:build
+        run: pnpm run ci:build
       - name: Push changes
         if: success()
         uses: ad-m/github-push-action@master

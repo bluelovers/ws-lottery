@@ -1,17 +1,18 @@
 import { randomLottoGenerator } from '../index';
 import fill from 'fill-range';
+import { test, TestContext} from 'node:test';
 
-test(`SuperLotto638`, () =>
+test(`SuperLotto638`, (t: TestContext) =>
 {
 
 	let g = randomLottoGenerator({
 		ranges: [
 			[
-				fill(1, 38),
+				fill(1, 38) as any,
 				6,
 			],
 			[
-				fill(1, 8),
+				fill(1, 8) as any,
 				1,
 			],
 		],
@@ -23,9 +24,9 @@ test(`SuperLotto638`, () =>
 
 		console.log(actual)
 
-		expect(actual[0].length).toStrictEqual(6);
-		expect(typeof actual[1]).toStrictEqual('number');
-		expect(actual.length).toStrictEqual(2);
+		t.assert.strictEqual(actual[0].length, 6);
+		t.assert.strictEqual(typeof actual[1], 'number');
+		t.assert.strictEqual(actual.length, 2);
 	}
 
 });
