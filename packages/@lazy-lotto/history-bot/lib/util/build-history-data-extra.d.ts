@@ -1,2 +1,2 @@
-import { IRecordRow } from '@lazy-lotto/types/index';
+import { IRecordRow } from '@lazy-lotto/types';
 export declare function buildHistoryDataExtra<T extends IRecordRow<any[]>>(modName: string): Promise<void>;

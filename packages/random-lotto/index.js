@@ -1,7 +1,4 @@
 "use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.defaultGetWeight = defaultGetWeight;
 exports.handleOptionsRange = handleOptionsRange;
@@ -9,7 +6,8 @@ exports.handleOptions = handleOptions;
 exports.randomLottoGenerator = randomLottoGenerator;
 exports.randomLotto = randomLotto;
 exports.randomLottoX = randomLottoX;
-const random_extra_1 = __importDefault(require("random-extra"));
+const tslib_1 = require("tslib");
+const random_extra_1 = tslib_1.__importDefault(require("random-extra"));
 const string_natural_compare_1 = require("@bluelovers/string-natural-compare");
 function defaultGetWeight(value, key, index, options, ...argv) {
     var _a, _b;
